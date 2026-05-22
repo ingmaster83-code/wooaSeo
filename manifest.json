@@ -1,0 +1,26 @@
+{
+  "name": "WooaSEO - 무료 SEO 도구 모음",
+  "short_name": "WooaSEO",
+  "description": "메타태그 생성, OG 태그, SERP 미리보기, 사이트맵 생성 등 SEO 필수 도구 모음. 완전 무료.",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#1A1A2E",
+  "theme_color": "#4F46E5",
+  "lang": "ko",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
