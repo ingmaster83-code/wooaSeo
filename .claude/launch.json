@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wooaseo",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3500", "."],
+      "port": 3500
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #fff; }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* 배경 장식 원 */
+  .bg-circle-1 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    top: -150px; right: -100px;
+  }
+  .bg-circle-2 {
+    position: absolute;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    bottom: -100px; left: -80px;
+  }
+  .bg-circle-3 {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    bottom: 60px; right: 120px;
+  }
+
+  /* 상단 WooaHouse 뱃지 */
+  .badge {
+    position: absolute;
+    top: 48px;
+    left: 72px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 6px 18px;
+    color: rgba(255,255,255,0.9);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* 메인 로고 영역 */
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+    z-index: 1;
+  }
+
+  .logo-icon {
+    width: 100px; height: 100px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-name {
+    font-size: 72px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .logo-name span {
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+  }
+
+  .logo-tagline {
+    font-size: 22px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* 툴 태그들 */
+  .tools-row {
+    display: flex;
+    gap: 12px;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+  }
+
+  .tool-tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 24px;
+    padding: 8px 20px;
+    color: rgba(255,255,255,0.92);
+    font-size: 17px;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+  }
+
+  /* 보안 뱃지 (우상단) */
+  .security-badge {
+    position: absolute;
+    top: 44px;
+    right: 72px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1.5px solid rgba(16, 185, 129, 0.7);
+    border-radius: 20px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6EE7B7;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .security-badge .lock-icon {
+    font-size: 18px;
+  }
+
+  /* 하단 보안 문구 바 */
+  .security-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    background: rgba(0,0,0,0.25);
+    padding: 14px 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .security-items {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .security-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .security-item .check {
+    color: #34D399;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* URL */
+  .url {
+    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="bg-circle-1"></div>
+    <div class="bg-circle-2"></div>
+    <div class="bg-circle-3"></div>
+
+    <div class="badge">WooaHouse Services</div>
+
+    <div class="security-badge">
+      <span class="lock-icon">🔒</span>
+      100% Client-Side · No Server Storage
+    </div>
+
+    <div class="logo-area">
+      <div class="logo-icon">🔎</div>
+      <div class="logo-text">
+        <div class="logo-name">Wooa<span>SEO</span></div>
+        <div class="logo-tagline">Free SEO Tools — All-in-One</div>
+      </div>
+    </div>
+
+    <div class="tools-row">
+      <div class="tool-tag">📝 Meta Tag Generator</div>
+      <div class="tool-tag">🖼️ OG Tag Generator</div>
+      <div class="tool-tag">🔍 SERP Preview</div>
+      <div class="tool-tag">🗺️ Sitemap Generator</div>
+      <div class="tool-tag">📋 Schema Generator</div>
+      <div class="tool-tag">🤖 Robots.txt</div>
+      <div class="tool-tag">🌐 hreflang</div>
+      <div class="tool-tag">📊 Keyword Density</div>
+      <div class="tool-tag">🔗 Canonical Checker</div>
+    </div>
+
+    <div class="security-bar">
+      <div class="security-items">
+        <div class="security-item"><span class="check">✓</span> No data sent to server</div>
+        <div class="security-item"><span class="check">✓</span> Works entirely in your browser</div>
+        <div class="security-item"><span class="check">✓</span> No account required</div>
+        <div class="security-item"><span class="check">✓</span> Always free</div>
+      </div>
+      <div class="url">wooaseo.wooahouse.com</div>
+    </div>
+  </div>
+</body>
+</html>
