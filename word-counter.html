@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ZGENFSXWC');</script>
+<meta charset="UTF-8">
+<meta name="naver-site-verification" content="216d253433b243f7cc87998079581336e214df75">
+<meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글자수 세기 무료 — 글자수·단어수·문장수 실시간 카운터 | WooaSEO</title>
+<meta name="description" content="텍스트를 입력하면 글자수(공백 포함/제외), 단어수, 문장수, 단락수, 읽기 소요시간을 실시간으로 카운트합니다. SNS 글자수 제한 확인 기능 포함. 무료, 설치 불필요.">
+<meta name="keywords" content="글자수 세기, 글자수 카운터, 단어수 세기, 문자수 세기, word counter, character count, 글자수 확인, 텍스트 길이">
+<link rel="canonical" href="https://wooaseo.wooahouse.com/word-counter.html">
+<link rel="alternate" hreflang="ko" href="https://wooaseo.wooahouse.com/word-counter.html">
+<link rel="alternate" hreflang="en" href="https://wooaseo.wooahouse.com/en/word-counter.html">
+<link rel="alternate" hreflang="x-default" href="https://wooaseo.wooahouse.com/en/word-counter.html">
+<meta property="og:title" content="글자수 세기 무료 — 글자수·단어수·문장수 실시간 카운터 | WooaSEO">
+<meta property="og:description" content="글자수(공백 포함/제외), 단어수, 문장수, 읽기 소요시간을 실시간으로 확인. SNS 글자수 제한 게이지 포함.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wooaseo.wooahouse.com/word-counter.html">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://wooaseo.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaSEO">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#4F46E5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WooaSEO">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"글자수 세기","url":"https://wooaseo.wooahouse.com/word-counter.html","applicationCategory":"UtilityApplication","operatingSystem":"Web","inLanguage":"ko","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"}}
+</script>
+<style>
+.wc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .wc-stats { grid-template-columns: repeat(2, 1fr); } }
+.wc-stat-box {
+  background: #F5F3FF;
+  border: 1px solid #DDD6FE;
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.wc-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+}
+.wc-stat-label {
+  font-size: 0.78rem;
+  color: #6B7280;
+  margin-top: 4px;
+}
+.wc-time {
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #3730A3;
+}
+.wc-time-icon { font-size: 1.3rem; }
+.wc-time strong { font-size: 1.05rem; }
+.sns-section { margin-top: 4px; }
+.sns-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 12px;
+}
+.sns-item {
+  margin-bottom: 12px;
+}
+.sns-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+}
+.sns-name { color: #374151; font-weight: 600; }
+.sns-count { color: #6B7280; }
+.sns-count.over { color: #DC2626; font-weight: 700; }
+.sns-bar-wrap {
+  background: #E5E7EB;
+  border-radius: 4px;
+  height: 7px;
+  overflow: hidden;
+}
+.sns-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.2s, background 0.2s;
+  background: #4F46E5;
+}
+.sns-bar.ok   { background: #4F46E5; }
+.sns-bar.warn { background: #F59E0B; }
+.sns-bar.over { background: #DC2626; }
+.wc-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 14px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.wc-textarea:focus { outline: none; border-color: #4F46E5; }
+.wc-btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.drop-hint {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  margin-top: 6px;
+}
+.dragging { border-color: #4F46E5 !important; background: #EEF2FF; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaSEO</a>
+    <nav>
+      <a href="meta-generator.html">메타태그</a>
+      <a href="og-generator.html">OG 태그</a>
+      <a href="serp-preview.html">SERP</a>
+      <a href="schema-generator.html">구조화 데이터</a>
+      <a href="sitemap-generator.html">사이트맵</a>
+      <a href="index.html">전체 도구 ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="word-counter.html" class="active">KO</a>
+        <span>|</span>
+        <a href="en/word-counter.html">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-decoration:none;margin-left:8px;">소개</a>
+    </div>
+  </div>
+</header>
+
+<div class="our-sites-bar"><span class="our-sites-label">WooaHouse Services</span><div class="our-sites-links"><a href="https://wooahouse.com/" target="_blank" rel="noopener">🔗 WooaHouse</a><a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 WooaPDF</a><a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ WooaImage</a><a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 WooaColor</a><a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ WooaText</a><a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 WooaQR</a><a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 WooaCalc</a><a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 WooaFont</a><a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 WooaMac</a><a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ WooaPC</a><a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 WooaVS</a><a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a><a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a><a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a><a href="https://wooaocr.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a><a href="https://wooasheet.wooahouse.com/" target="_blank" rel="noopener">📊 WooaSheet</a><a href="https://wooaseo.wooahouse.com/" target="_blank" rel="noopener" class="active">🔎 WooaSEO</a></div></div>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<div class="tool-page">
+  <div class="breadcrumb"><a href="index.html">🏠 홈</a><span>›</span><span>글자수 세기</span></div>
+  <div class="tool-header">
+    <div class="tool-icon-lg">📝</div>
+    <div>
+      <h1>글자수 세기 — 글자수·단어수·문장수 실시간 카운터</h1>
+      <p>텍스트를 입력하면 글자수·단어수·문장수·단락수·읽기 소요시간을 실시간으로 계산합니다. SNS 플랫폼별 글자수 제한도 함께 확인하세요.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">텍스트 입력</div>
+    <textarea
+      class="wc-textarea"
+      id="textInput"
+      placeholder="여기에 텍스트를 입력하거나 붙여넣으세요. .txt / .md 파일을 드래그해도 됩니다."
+      oninput="count()"
+    ></textarea>
+    <p class="drop-hint">💡 .txt / .md 파일을 이 영역에 드래그&드롭하면 자동으로 불러옵니다.</p>
+    <div class="wc-btn-row">
+      <button class="btn-share" onclick="clearText()">🗑️ 지우기</button>
+      <button class="btn-convert" onclick="copyText()">📋 텍스트 복사</button>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-title">분석 결과</div>
+
+    <div class="wc-stats">
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statCharsAll">0</div>
+        <div class="wc-stat-label">글자수 (공백 포함)</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statCharsNoSpace">0</div>
+        <div class="wc-stat-label">글자수 (공백 제외)</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statWords">0</div>
+        <div class="wc-stat-label">단어수</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statSentences">0</div>
+        <div class="wc-stat-label">문장수</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statParagraphs">0</div>
+        <div class="wc-stat-label">단락수</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statLines">0</div>
+        <div class="wc-stat-label">줄 수</div>
+      </div>
+    </div>
+
+    <div class="wc-time">
+      <span class="wc-time-icon">⏱️</span>
+      <span>평균 읽기 속도 기준 예상 읽기 시간: <strong id="statReadTime">0초</strong></span>
+    </div>
+
+    <div class="sns-section">
+      <div class="sns-title">📱 SNS · 플랫폼별 글자수 제한</div>
+      <div id="snsList"></div>
+    </div>
+  </div>
+
+  <div class="tips-panel">
+    <h3>💡 Tips</h3>
+    <ul>
+      <li>공백·줄바꿈도 글자수에 포함됩니다. <strong>공백 제외</strong> 수치가 실제 콘텐츠 분량에 더 가깝습니다.</li>
+      <li>블로그 포스팅의 경우 최소 <strong>800~1,500자</strong>(공백 제외) 이상이 SEO에 유리합니다.</li>
+      <li>메타 설명(description)은 <strong>120~160자</strong> 사이가 Google 검색결과에서 잘리지 않습니다.</li>
+      <li>X(Twitter) 트윗은 <strong>280자</strong>, 한글은 모든 글자가 1자로 계산됩니다.</li>
+      <li>.txt 또는 .md 파일을 텍스트 입력창에 드래그&드롭하면 자동으로 불러옵니다.</li>
+    </ul>
+  </div>
+
+  <details class="faq-item">
+    <summary>글자수 세기가 SEO와 어떤 관련이 있나요?</summary>
+    <p>검색엔진은 콘텐츠의 깊이와 품질을 평가할 때 텍스트 길이를 간접 지표로 사용합니다. 너무 짧은 글(300자 미만)은 "얕은 콘텐츠(thin content)"로 분류될 수 있어 검색 순위에 불리합니다. 일반적으로 경쟁이 높은 키워드일수록 상위 노출 페이지의 텍스트 분량이 많습니다.</p>
+  </details>
+  <details class="faq-item">
+    <summary>단어수는 어떻게 계산되나요?</summary>
+    <p>공백(스페이스, 탭, 줄바꿈)을 기준으로 단어를 분리합니다. 한국어의 경우 띄어쓰기 단위로 계산되므로 영어보다 단어 수가 적게 나올 수 있습니다. 한국어 문서는 단어수보다 <strong>글자수(공백 제외)</strong>를 콘텐츠 분량의 기준으로 쓰는 것이 일반적입니다.</p>
+  </details>
+  <details class="faq-item">
+    <summary>읽기 소요시간은 어떻게 계산되나요?</summary>
+    <p>한국어 평균 읽기 속도인 <strong>분당 약 500자</strong>(공백 제외 기준)를 기준으로 계산합니다. 영문 텍스트가 섞인 경우 실제 읽기 속도와 차이가 날 수 있습니다.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Twitter(X)는 왜 140자가 아닌 280자인가요?</summary>
+    <p>Twitter는 2017년 10월 영어 외 언어에 대해 140자 제한을 280자로 확대했습니다. 단, 중국어·일본어·한국어(CJK 문자)는 원래 140자 제한이 적용되었는데, 현재는 <strong>한글도 280자</strong>로 통일되어 있습니다.</p>
+  </details>
+</div>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle" style="display:block;width:100%;min-height:250px"
+      data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025"
+      data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card">
+    <script src="https://ads-partners.coupang.com/g.js"></script>
+    <script>new PartnersCoupang.G({"id":986943,"template":"carousel","trackingCode":"AF5600192","width":"160","height":"200","tsource":""});</script>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-footer">WooaSEO</span>
+        <p>SEO 필수 도구 모음. 메타태그, OG 태그, SERP 미리보기, 사이트맵 등을 무료로 생성하세요.</p>
+      </div>
+      <div class="footer-links">
+        <h4>태그 생성</h4>
+        <a href="meta-generator.html">메타태그 생성기</a>
+        <a href="og-generator.html">OG 태그 생성기</a>
+        <a href="hreflang-generator.html">hreflang 생성기</a>
+        <a href="canonical-generator.html">Canonical 생성기</a>
+      </div>
+      <div class="footer-links">
+        <h4>분석 · 미리보기</h4>
+        <a href="serp-preview.html">SERP 미리보기</a>
+        <a href="keyword-density.html">키워드 밀도 분석</a>
+        <a href="slug-generator.html">URL 슬러그 생성기</a>
+        <a href="word-counter.html">글자수 세기</a>
+      </div>
+      <div class="footer-links">
+        <h4>파일 생성</h4>
+        <a href="sitemap-generator.html">Sitemap 생성기</a>
+        <a href="robots-generator.html">Robots.txt 생성기</a>
+        <a href="schema-generator.html">구조화 데이터 생성기</a>
+      </div>
+      <div class="footer-links">
+        <h4>정보</h4>
+        <a href="about.html">서비스 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </div>
+      <div class="footer-links">
+        <h4>WooaHouse 서비스</h4>
+        <a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">WooaPDF</a>
+        <a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">WooaImage</a>
+        <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">WooaText</a>
+        <a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">WooaDev</a>
+        <a href="https://wooahouse.com/" target="_blank" rel="noopener">WooaHouse</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 WooaSEO. 모든 권리 보유.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="about.html">소개</a>
+      </div>
+    </div>
+    <p class="coupang-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+  </div>
+</footer>
+
+<script src="js/pwa-install.js"></script>
+<script>
+const SNS_LIMITS = [
+  { name: 'Google 제목 태그',      limit: 60,    icon: '🔍' },
+  { name: 'Google 메타 설명',      limit: 160,   icon: '🔍' },
+  { name: 'X (Twitter) 트윗',      limit: 280,   icon: '🐦' },
+  { name: 'YouTube 제목',          limit: 100,   icon: '▶️' },
+  { name: 'YouTube 설명',          limit: 5000,  icon: '▶️' },
+  { name: 'Instagram 캡션',        limit: 2200,  icon: '📸' },
+  { name: 'Facebook 게시글',       limit: 63206, icon: '👍' },
+  { name: '카카오톡 메시지',       limit: 10000, icon: '💬' },
+];
+
+function count() {
+  const text = document.getElementById('textInput').value;
+
+  const charsAll      = text.length;
+  const charsNoSpace  = text.replace(/\s/g, '').length;
+  const words         = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  const sentences     = text === '' ? 0 : (text.match(/[.!?。！？]+/g) || []).length;
+  const paragraphs    = text.trim() === '' ? 0 : text.trim().split(/\n\s*\n+/).length;
+  const lines         = text === '' ? 0 : text.split('\n').length;
+
+  // 읽기 시간: 한국어 평균 500자/분 (공백 제외)
+  const readSec       = Math.round((charsNoSpace / 500) * 60);
+
+  document.getElementById('statCharsAll').textContent     = charsAll.toLocaleString();
+  document.getElementById('statCharsNoSpace').textContent = charsNoSpace.toLocaleString();
+  document.getElementById('statWords').textContent        = words.toLocaleString();
+  document.getElementById('statSentences').textContent    = sentences.toLocaleString();
+  document.getElementById('statParagraphs').textContent   = paragraphs.toLocaleString();
+  document.getElementById('statLines').textContent        = lines.toLocaleString();
+
+  let timeStr;
+  if (readSec < 60) {
+    timeStr = readSec + '초';
+  } else {
+    const m = Math.floor(readSec / 60);
+    const s = readSec % 60;
+    timeStr = s > 0 ? m + '분 ' + s + '초' : m + '분';
+  }
+  document.getElementById('statReadTime').textContent = timeStr;
+
+  // SNS 게이지
+  const snsList = document.getElementById('snsList');
+  snsList.innerHTML = SNS_LIMITS.map(({ name, limit, icon }) => {
+    const used  = Math.min(charsAll, limit * 2); // 시각적 표시용
+    const pct   = Math.min((charsAll / limit) * 100, 100);
+    const over  = charsAll > limit;
+    const warn  = !over && pct >= 80;
+    const cls   = over ? 'over' : (warn ? 'warn' : 'ok');
+    const remaining = limit - charsAll;
+    const countText = over
+      ? `<span class="sns-count over">${charsAll.toLocaleString()} / ${limit.toLocaleString()} (${Math.abs(remaining).toLocaleString()}자 초과)</span>`
+      : `<span class="sns-count">${charsAll.toLocaleString()} / ${limit.toLocaleString()} (${remaining.toLocaleString()}자 남음)</span>`;
+
+    return `<div class="sns-item">
+      <div class="sns-row">
+        <span class="sns-name">${icon} ${name}</span>
+        ${countText}
+      </div>
+      <div class="sns-bar-wrap">
+        <div class="sns-bar ${cls}" style="width:${pct}%"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function clearText() {
+  document.getElementById('textInput').value = '';
+  count();
+}
+
+function copyText() {
+  const text = document.getElementById('textInput').value;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✅ 복사됨!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+// 파일 드래그앤드롭
+const ta = document.getElementById('textInput');
+ta.addEventListener('dragover', e => { e.preventDefault(); ta.classList.add('dragging'); });
+ta.addEventListener('dragleave', () => ta.classList.remove('dragging'));
+ta.addEventListener('drop', e => {
+  e.preventDefault();
+  ta.classList.remove('dragging');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { ta.value = ev.target.result; count(); };
+  reader.readAsText(file, 'UTF-8');
+});
+
+// 초기 실행
+count();
+</script>
+</body>
+</html>

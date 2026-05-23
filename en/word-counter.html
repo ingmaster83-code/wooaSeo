@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ZGENFSXWC');</script>
+<meta charset="UTF-8">
+<meta name="naver-site-verification" content="216d253433b243f7cc87998079581336e214df75">
+<meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Word Counter — Character, Word & Sentence Count Online | WooaSEO</title>
+<meta name="description" content="Count characters (with/without spaces), words, sentences, paragraphs, and reading time in real time. Includes SNS character limit gauges for Twitter, Instagram, YouTube and more. Free, no install.">
+<meta name="keywords" content="word counter, character counter, character count, word count, sentence counter, reading time calculator, online word counter, free word counter">
+<link rel="canonical" href="https://wooaseo.wooahouse.com/en/word-counter.html">
+<link rel="alternate" hreflang="ko" href="https://wooaseo.wooahouse.com/word-counter.html">
+<link rel="alternate" hreflang="en" href="https://wooaseo.wooahouse.com/en/word-counter.html">
+<link rel="alternate" hreflang="x-default" href="https://wooaseo.wooahouse.com/en/word-counter.html">
+<meta property="og:title" content="Free Word Counter — Character, Word & Sentence Count | WooaSEO">
+<meta property="og:description" content="Real-time character count (with/without spaces), word count, sentence count, and reading time. SNS character limit gauges included.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wooaseo.wooahouse.com/en/word-counter.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wooaseo.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaSEO">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#4F46E5">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WooaSEO">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Word Counter","url":"https://wooaseo.wooahouse.com/en/word-counter.html","applicationCategory":"UtilityApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.wc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .wc-stats { grid-template-columns: repeat(2, 1fr); } }
+.wc-stat-box {
+  background: #F5F3FF;
+  border: 1px solid #DDD6FE;
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.wc-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #4F46E5;
+  line-height: 1;
+}
+.wc-stat-label {
+  font-size: 0.78rem;
+  color: #6B7280;
+  margin-top: 4px;
+}
+.wc-time {
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #3730A3;
+}
+.wc-time-icon { font-size: 1.3rem; }
+.wc-time strong { font-size: 1.05rem; }
+.sns-section { margin-top: 4px; }
+.sns-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 12px;
+}
+.sns-item { margin-bottom: 12px; }
+.sns-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+}
+.sns-name { color: #374151; font-weight: 600; }
+.sns-count { color: #6B7280; }
+.sns-count.over { color: #DC2626; font-weight: 700; }
+.sns-bar-wrap { background: #E5E7EB; border-radius: 4px; height: 7px; overflow: hidden; }
+.sns-bar { height: 100%; border-radius: 4px; transition: width 0.2s, background 0.2s; background: #4F46E5; }
+.sns-bar.ok   { background: #4F46E5; }
+.sns-bar.warn { background: #F59E0B; }
+.sns-bar.over { background: #DC2626; }
+.wc-textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 14px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.wc-textarea:focus { outline: none; border-color: #4F46E5; }
+.wc-btn-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.drop-hint { font-size: 0.8rem; color: #9CA3AF; margin-top: 6px; }
+.dragging { border-color: #4F46E5 !important; background: #EEF2FF; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">WooaSEO</a>
+    <nav>
+      <a href="meta-generator.html">Meta Tags</a>
+      <a href="og-generator.html">OG Tags</a>
+      <a href="serp-preview.html">SERP</a>
+      <a href="schema-generator.html">Schema</a>
+      <a href="sitemap-generator.html">Sitemap</a>
+      <a href="index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right">
+      <div class="lang-switcher">
+        <a href="../word-counter.html">KO</a>
+        <span>|</span>
+        <a href="word-counter.html" class="active">EN</a>
+      </div>
+      <a href="about.html" style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-decoration:none;margin-left:8px;">About</a>
+    </div>
+  </div>
+</header>
+
+<div class="our-sites-bar"><span class="our-sites-label">WooaHouse Services</span><div class="our-sites-links"><a href="https://wooahouse.com/" target="_blank" rel="noopener">🔗 WooaHouse</a><a href="https://pdfkit.wooahouse.com/" target="_blank" rel="noopener">📄 WooaPDF</a><a href="https://imagekit.wooahouse.com/" target="_blank" rel="noopener">🖼️ WooaImage</a><a href="https://colorkit.wooahouse.com/" target="_blank" rel="noopener">🎨 WooaColor</a><a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">✏️ WooaText</a><a href="https://qrkit.wooahouse.com/" target="_blank" rel="noopener">📱 WooaQR</a><a href="https://calckit.wooahouse.com/" target="_blank" rel="noopener">🧮 WooaCalc</a><a href="https://fontkit.wooahouse.com/" target="_blank" rel="noopener">🔤 WooaFont</a><a href="https://mactools.wooahouse.com/" target="_blank" rel="noopener">🍎 WooaMac</a><a href="https://pctools.wooahouse.com/" target="_blank" rel="noopener">🖥️ WooaPC</a><a href="https://vskit.wooahouse.com/" target="_blank" rel="noopener">💻 WooaVS</a><a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio</a><a href="https://wooaviewer.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaViewer</a><a href="https://wooadev.wooahouse.com/" target="_blank" rel="noopener">🛠️ WooaDev</a><a href="https://wooaocr.wooahouse.com/" target="_blank" rel="noopener">🔍 WooaOCR</a><a href="https://wooasheet.wooahouse.com/" target="_blank" rel="noopener">📊 WooaSheet</a><a href="https://wooaseo.wooahouse.com/" target="_blank" rel="noopener" class="active">🔎 WooaSEO</a></div></div>
+
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="page-with-sidebar">
+<div class="tool-page">
+  <div class="breadcrumb"><a href="index.html">🏠 Home</a><span>›</span><span>Word Counter</span></div>
+  <div class="tool-header">
+    <div class="tool-icon-lg">📝</div>
+    <div>
+      <h1>Word Counter — Real-Time Character, Word &amp; Sentence Count</h1>
+      <p>Instantly count characters (with/without spaces), words, sentences, paragraphs, and estimated reading time. Check SNS character limits at a glance.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Enter Text</div>
+    <textarea
+      class="wc-textarea"
+      id="textInput"
+      placeholder="Type or paste your text here. You can also drag and drop a .txt or .md file."
+      oninput="count()"
+    ></textarea>
+    <p class="drop-hint">💡 Drag and drop a .txt or .md file onto this area to load it automatically.</p>
+    <div class="wc-btn-row">
+      <button class="btn-share" onclick="clearText()">🗑️ Clear</button>
+      <button class="btn-convert" onclick="copyText()">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-title">Results</div>
+
+    <div class="wc-stats">
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statCharsAll">0</div>
+        <div class="wc-stat-label">Characters (with spaces)</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statCharsNoSpace">0</div>
+        <div class="wc-stat-label">Characters (no spaces)</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statWords">0</div>
+        <div class="wc-stat-label">Words</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statSentences">0</div>
+        <div class="wc-stat-label">Sentences</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statParagraphs">0</div>
+        <div class="wc-stat-label">Paragraphs</div>
+      </div>
+      <div class="wc-stat-box">
+        <div class="wc-stat-num" id="statLines">0</div>
+        <div class="wc-stat-label">Lines</div>
+      </div>
+    </div>
+
+    <div class="wc-time">
+      <span class="wc-time-icon">⏱️</span>
+      <span>Estimated reading time (avg. 200 wpm): <strong id="statReadTime">0 sec</strong></span>
+    </div>
+
+    <div class="sns-section">
+      <div class="sns-title">📱 Platform Character Limits</div>
+      <div id="snsList"></div>
+    </div>
+  </div>
+
+  <div class="tips-panel">
+    <h3>💡 Tips</h3>
+    <ul>
+      <li>Spaces and line breaks are included in the character count. Use <strong>Characters (no spaces)</strong> for a closer measure of actual content volume.</li>
+      <li>For SEO, blog posts typically benefit from at least <strong>300–500 words</strong>. Longer, in-depth content often ranks better for competitive keywords.</li>
+      <li>Google's search snippets show roughly <strong>120–160 characters</strong> of a meta description — keep yours within that range.</li>
+      <li>X (Twitter) allows up to <strong>280 characters</strong> per tweet for all languages including CJK characters.</li>
+      <li>Drag and drop a <strong>.txt</strong> or <strong>.md</strong> file onto the text area to load it instantly.</li>
+    </ul>
+  </div>
+
+  <details class="faq-item">
+    <summary>How is reading time calculated?</summary>
+    <p>Reading time is estimated based on the average adult reading speed of <strong>200 words per minute</strong>. This varies by individual and content complexity — technical or unfamiliar text is usually read more slowly.</p>
+  </details>
+  <details class="faq-item">
+    <summary>How are words counted?</summary>
+    <p>Words are split by whitespace (spaces, tabs, line breaks). Punctuation attached to words is included as part of the word. For languages without clear word boundaries (e.g., Chinese, Japanese), the count may not reflect natural word units — use the character count instead.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Why does word count matter for SEO?</summary>
+    <p>Search engines use content depth as a quality signal. Very short pages (under ~300 words) can be flagged as "thin content." That said, quality and relevance matter more than length — aim for thorough coverage of the topic rather than hitting an arbitrary word count target.</p>
+  </details>
+  <details class="faq-item">
+    <summary>Does this tool save my text?</summary>
+    <p>No. All counting happens locally in your browser. Your text is never sent to any server, making this tool completely private and secure.</p>
+  </details>
+</div>
+
+<aside class="tool-sidebar">
+  <div class="ad-card">
+    <ins class="adsbygoogle" style="display:block;width:100%;min-height:250px"
+      data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025"
+      data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-card">
+    <script src="https://ads-partners.coupang.com/g.js"></script>
+    <script>new PartnersCoupang.G({"id":986943,"template":"carousel","trackingCode":"AF5600192","width":"160","height":"200","tsource":""});</script>
+  </div>
+</aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-footer">WooaSEO</span>
+        <p>Free SEO tools collection — meta tags, OG tags, SERP preview, sitemap and more.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Tag Generators</h4>
+        <a href="meta-generator.html">Meta Tag Generator</a>
+        <a href="og-generator.html">OG Tag Generator</a>
+        <a href="hreflang-generator.html">hreflang Generator</a>
+        <a href="canonical-generator.html">Canonical Generator</a>
+      </div>
+      <div class="footer-links">
+        <h4>Analysis &amp; Preview</h4>
+        <a href="serp-preview.html">SERP Preview</a>
+        <a href="keyword-density.html">Keyword Density</a>
+        <a href="slug-generator.html">URL Slug Generator</a>
+        <a href="word-counter.html">Word Counter</a>
+      </div>
+      <div class="footer-links">
+        <h4>File Generators</h4>
+        <a href="sitemap-generator.html">Sitemap Generator</a>
+        <a href="robots-generator.html">Robots.txt Generator</a>
+        <a href="schema-generator.html">Schema Generator</a>
+      </div>
+      <div class="footer-links">
+        <h4>Info</h4>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="../index.html">한국어</a>
+      </div>
+      <div class="footer-links">
+        <h4>WooaHouse Services</h4>
+        <a href="https://pdfkit.wooahouse.com/en/" target="_blank" rel="noopener">WooaPDF</a>
+        <a href="https://imagekit.wooahouse.com/en/" target="_blank" rel="noopener">WooaImage</a>
+        <a href="https://textkit.wooahouse.com/" target="_blank" rel="noopener">WooaText</a>
+        <a href="https://wooadev.wooahouse.com/en/" target="_blank" rel="noopener">WooaDev</a>
+        <a href="https://wooahouse.com/" target="_blank" rel="noopener">WooaHouse</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 WooaSEO. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <p class="coupang-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+  </div>
+</footer>
+
+<script src="../js/pwa-install.js"></script>
+<script>
+const SNS_LIMITS = [
+  { name: 'Google Title Tag',     limit: 60,    icon: '🔍' },
+  { name: 'Google Meta Desc.',    limit: 160,   icon: '🔍' },
+  { name: 'X (Twitter) Tweet',    limit: 280,   icon: '🐦' },
+  { name: 'YouTube Title',        limit: 100,   icon: '▶️' },
+  { name: 'YouTube Description',  limit: 5000,  icon: '▶️' },
+  { name: 'Instagram Caption',    limit: 2200,  icon: '📸' },
+  { name: 'Facebook Post',        limit: 63206, icon: '👍' },
+];
+
+function count() {
+  const text = document.getElementById('textInput').value;
+
+  const charsAll     = text.length;
+  const charsNoSpace = text.replace(/\s/g, '').length;
+  const words        = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  const sentences    = text === '' ? 0 : (text.match(/[.!?。！？]+/g) || []).length;
+  const paragraphs   = text.trim() === '' ? 0 : text.trim().split(/\n\s*\n+/).length;
+  const lines        = text === '' ? 0 : text.split('\n').length;
+
+  // Reading time: avg 200 wpm
+  const readSec = Math.round((words / 200) * 60);
+
+  document.getElementById('statCharsAll').textContent     = charsAll.toLocaleString();
+  document.getElementById('statCharsNoSpace').textContent = charsNoSpace.toLocaleString();
+  document.getElementById('statWords').textContent        = words.toLocaleString();
+  document.getElementById('statSentences').textContent    = sentences.toLocaleString();
+  document.getElementById('statParagraphs').textContent   = paragraphs.toLocaleString();
+  document.getElementById('statLines').textContent        = lines.toLocaleString();
+
+  let timeStr;
+  if (readSec < 60) {
+    timeStr = readSec + ' sec';
+  } else {
+    const m = Math.floor(readSec / 60);
+    const s = readSec % 60;
+    timeStr = s > 0 ? m + ' min ' + s + ' sec' : m + ' min';
+  }
+  document.getElementById('statReadTime').textContent = timeStr;
+
+  const snsList = document.getElementById('snsList');
+  snsList.innerHTML = SNS_LIMITS.map(({ name, limit, icon }) => {
+    const pct  = Math.min((charsAll / limit) * 100, 100);
+    const over = charsAll > limit;
+    const warn = !over && pct >= 80;
+    const cls  = over ? 'over' : (warn ? 'warn' : 'ok');
+    const remaining = limit - charsAll;
+    const countText = over
+      ? `<span class="sns-count over">${charsAll.toLocaleString()} / ${limit.toLocaleString()} (${Math.abs(remaining).toLocaleString()} over)</span>`
+      : `<span class="sns-count">${charsAll.toLocaleString()} / ${limit.toLocaleString()} (${remaining.toLocaleString()} left)</span>`;
+
+    return `<div class="sns-item">
+      <div class="sns-row">
+        <span class="sns-name">${icon} ${name}</span>
+        ${countText}
+      </div>
+      <div class="sns-bar-wrap">
+        <div class="sns-bar ${cls}" style="width:${pct}%"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function clearText() {
+  document.getElementById('textInput').value = '';
+  count();
+}
+
+function copyText() {
+  const text = document.getElementById('textInput').value;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+const ta = document.getElementById('textInput');
+ta.addEventListener('dragover', e => { e.preventDefault(); ta.classList.add('dragging'); });
+ta.addEventListener('dragleave', () => ta.classList.remove('dragging'));
+ta.addEventListener('drop', e => {
+  e.preventDefault();
+  ta.classList.remove('dragging');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { ta.value = ev.target.result; count(); };
+  reader.readAsText(file, 'UTF-8');
+});
+
+count();
+</script>
+</body>
+</html>
