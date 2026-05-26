@@ -20,6 +20,15 @@
     { host: 'wooagosa.wooahouse.com',     badge: 'WOOAGOSA',    color: '#6366F1', icon: '📝', title: '자격증·면허 무료 모의고사',        desc: '운전면허·자격증 시험을 무료로 준비하세요. 49개 시험, 오답노트 지원.',                                   url: 'https://wooagosa.wooahouse.com' },
   ];
 
+  // 배경색 밝기 감지 (0~255, 128 미만이면 어두운 배경)
+  function bgLuminance() {
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const m = bg.match(/\d+/g);
+    if (!m || m.length < 3) return 255;
+    return 0.299 * +m[0] + 0.587 * +m[1] + 0.114 * +m[2];
+  }
+  const dark = bgLuminance() < 80;
+
   // 현재 사이트 제외 + 랜덤 N개 (인덱스: 5개, 툴 페이지: 4개)
   const isToolPage = !!document.querySelector('.wooa-orig-anchor');
   const currentHost = window.location.hostname;
@@ -52,11 +61,11 @@
       font-size: 13px;
       font-weight: 800;
       letter-spacing: .08em;
-      color: #333;
+      color: ${dark ? '#e2e8f0' : '#333'};
     }
     .wooa-orig-sub {
       font-size: 13px;
-      color: #888;
+      color: ${dark ? '#94a3b8' : '#888'};
       margin: 0 0 20px 18px;
     }
     .wooa-orig-grid {
@@ -65,8 +74,8 @@
       gap: 14px;
     }
     .wooa-orig-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
+      background: ${dark ? '#1e293b' : '#fff'};
+      border: 1px solid ${dark ? '#334155' : '#e5e7eb'};
       border-radius: 14px;
       padding: 20px;
       text-decoration: none;
@@ -85,7 +94,7 @@
       background: var(--wooa-color);
     }
     .wooa-orig-card:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,${dark ? '.4' : '.1'});
       transform: translateY(-2px);
     }
     .wooa-orig-top {
@@ -102,24 +111,24 @@
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .06em;
-      color: #888;
+      color: ${dark ? '#64748b' : '#888'};
     }
     .wooa-orig-title {
       font-size: 16px;
       font-weight: 700;
-      color: #111;
+      color: ${dark ? '#e2e8f0' : '#111'};
       line-height: 1.4;
     }
     .wooa-orig-desc {
       font-size: 13px;
-      color: #666;
+      color: ${dark ? '#94a3b8' : '#666'};
       line-height: 1.6;
       flex: 1;
     }
     .wooa-orig-link {
       font-size: 13px;
       font-weight: 600;
-      color: #3B82F6;
+      color: ${dark ? '#60a5fa' : '#3B82F6'};
       margin-top: 4px;
     }
   `;
@@ -150,8 +159,8 @@
   `;
 
   // 삽입 위치 결정
-  const anchor = document.querySelector('.wooa-orig-anchor'); // 도구 페이지용 앵커
-  const toolsSection = document.querySelector('.tools-section'); // 인덱스 페이지용
+  const anchor = document.querySelector('.wooa-orig-anchor');
+  const toolsSection = document.querySelector('.tools-section');
   if (anchor) anchor.replaceWith(wrap);
   else if (toolsSection) toolsSection.prepend(wrap);
   else {
