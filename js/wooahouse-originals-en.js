@@ -30,6 +30,7 @@
 
   const isToolPage = !!document.querySelector('.wooa-orig-anchor');
   const currentHost = window.location.hostname;
+  const utmSource = currentHost.replace('.wooahouse.com', '');
   const picks = SITES
     .filter(s => s.host !== currentHost)
     .sort(() => Math.random() - 0.5)
@@ -141,7 +142,7 @@
     <p class="wooa-orig-sub">More free tools from WooaHouse</p>
     <div class="wooa-orig-grid">
       ${picks.map(s => `
-        <a href="${s.url}" class="wooa-orig-card" style="--wooa-color:${s.color}" target="_blank" rel="noopener">
+        <a href="${s.url}?utm_source=${utmSource}&utm_medium=originals&utm_campaign=wooahouse" class="wooa-orig-card" style="--wooa-color:${s.color}" target="_blank" rel="noopener">
           <div class="wooa-orig-top">
             <span class="wooa-orig-icon">${s.icon}</span>
             <span class="wooa-orig-badge">${s.badge}</span>

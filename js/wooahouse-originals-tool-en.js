@@ -29,6 +29,7 @@
   const dark = bgLuminance() < 80;
 
   const currentHost = window.location.hostname;
+  const utmSource = currentHost.replace('.wooahouse.com', '');
   const picks = SITES
     .filter(s => s.host !== currentHost)
     .sort(() => Math.random() - 0.5)
@@ -134,7 +135,7 @@
     <p class="wooa-tool-sub">All free at WooaHouse</p>
     <div class="wooa-tool-grid">
       ${picks.map(s => `
-        <a href="${s.url}" class="wooa-tool-card" style="--wooa-color:${s.color}" target="_blank" rel="noopener">
+        <a href="${s.url}?utm_source=${utmSource}&utm_medium=originals&utm_campaign=wooahouse" class="wooa-tool-card" style="--wooa-color:${s.color}" target="_blank" rel="noopener">
           <span class="wooa-tool-icon">${s.icon}</span>
           <div class="wooa-tool-info">
             <span class="wooa-tool-badge">${s.badge}</span>
