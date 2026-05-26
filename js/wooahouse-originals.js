@@ -168,4 +168,18 @@
     if (fallback) fallback.before(wrap);
     else document.body.appendChild(wrap);
   }
+
+  // 인덱스 페이지: 렌더 후 마지막 줄에 혼자 남은 카드 자동 제거
+  if (!isToolPage) {
+    requestAnimationFrame(() => {
+      const grid = wrap.querySelector('.wooa-orig-grid');
+      if (!grid || grid.children.length < 2) return;
+      const items = [...grid.children];
+      const topFirst = Math.round(items[0].getBoundingClientRect().top);
+      const perRow = items.filter(el => Math.round(el.getBoundingClientRect().top) === topFirst).length;
+      if (perRow < 1 || perRow >= items.length) return;
+      const rem = items.length % perRow;
+      if (rem !== 0) items.slice(-rem).forEach(el => el.remove());
+    });
+  }
 })();
