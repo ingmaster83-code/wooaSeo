@@ -163,6 +163,9 @@
     else if (e.key === 'Escape') closeSearch();
   });
 
+  // 외부에서 호출 가능하도록 전역 노출
+  window.wooaSearch = openSearch;
+
   // ── 사이트 바 렌더링 ─────────────────────────────────────────────────────────
   const currentHost = window.location.hostname;
   const isEN = window.location.pathname.includes('/en/');
