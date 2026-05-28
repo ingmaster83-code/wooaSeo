@@ -7,15 +7,15 @@
 <meta name="naver-site-verification" content="216d253433b243f7cc87998079581336e214df75">
 <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free OG Tag Generator — Open Graph & Twitter Card | WooaSEO</title>
-<meta name="description" content="Free Open Graph and Twitter Card tag generator. Enter URL, title, description, and image to instantly generate og: meta tags. Live preview included.">
+<title>Free No-Install OG Tag Generator — Open Graph & Twitter Card | WooaSEO</title>
+<meta name="description" content="Free Open Graph and Twitter Card tag generator. Enter URL, title, description, and image to instantly generate og: meta tags. Live preview included No installation required.">
 <meta name="keywords" content="OG tag generator, Open Graph generator, Twitter Card generator, og:image, og:title, social share tags">
 <link rel="canonical" href="https://wooaseo.wooahouse.com/en/og-generator.html">
 <link rel="alternate" hreflang="ko" href="https://wooaseo.wooahouse.com/og-generator.html">
 <link rel="alternate" hreflang="en" href="https://wooaseo.wooahouse.com/en/og-generator.html">
 <link rel="alternate" hreflang="x-default" href="https://wooaseo.wooahouse.com/en/og-generator.html">
-<meta property="og:title" content="Free OG Tag Generator | WooaSEO">
-<meta property="og:description" content="Generate Open Graph and Twitter Card tags instantly. Live preview for Facebook, Kakao, Twitter, and more.">
+<meta property="og:title" content="Free No-Install OG Tag Generator — Open Graph & Twitter Card | WooaSEO">
+<meta property="og:description" content="Free Open Graph and Twitter Card tag generator. Enter URL, title, description, and image to instantly generate og: meta tags. Live preview included No installation required.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wooaseo.wooahouse.com/en/og-generator.html">
 <meta property="og:locale" content="en_US">
@@ -299,8 +299,8 @@ function generate() {
   lines.push('');
   lines.push('<!-- Twitter Card Tags -->');
   lines.push(`<meta name="twitter:card" content="${e(v('tw-card'))}">`);
-  if (v('og-title')) lines.push(`<meta name="twitter:title" content="${e(v('og-title'))}">`);
-  if (v('og-desc')) lines.push(`<meta name="twitter:description" content="${e(v('og-desc'))}">`);
+  if (v('og-title')) lines.push(`<meta name="twitter:title" content="Free No-Install OG Tag Generator — Open Graph & Twitter Card | WooaSEO">`);
+  if (v('og-desc')) lines.push(`<meta name="twitter:description" content="Free Open Graph and Twitter Card tag generator. Enter URL, title, description, and image to instantly generate og: meta tags. Live preview included No installation required.">`);
   if (v('og-image')) lines.push(`<meta name="twitter:image" content="${e(v('og-image'))}">`);
   if (v('tw-creator')) lines.push(`<meta name="twitter:creator" content="${e(v('tw-creator'))}">`);
   document.getElementById('outputCode').textContent = lines.join('\n');
