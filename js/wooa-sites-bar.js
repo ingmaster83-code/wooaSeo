@@ -22,6 +22,8 @@
   ];
 
   const currentHost = window.location.hostname;
+  const isEN = window.location.pathname.includes('/en/');
+  const label = isEN ? '🏠 WooaHouse Family Sites' : '🏠 우아하우스 패밀리 사이트 · 도구모음';
 
   // 기존 our-sites-bar 교체 또는 header 뒤에 삽입
   const existing = document.querySelector('.our-sites-bar');
@@ -29,7 +31,7 @@
   bar.className = 'our-sites-bar';
   bar.innerHTML = `
     <div class="our-sites-inner">
-      <span class="our-sites-label">🏠 우아하우스 패밀리 사이트 · 도구모음</span>
+      <span class="our-sites-label">${label}</span>
       <div class="our-sites-links">
         ${SITES.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}</a>`).join('')}
       </div>
