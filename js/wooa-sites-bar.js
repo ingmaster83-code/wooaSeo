@@ -21,11 +21,153 @@
     { icon: '📝', name: 'WooaGosa',  host: 'wooagosa.wooahouse.com',  url: 'https://wooagosa.wooahouse.com/' },
   ];
 
+  // ── 검색 모달 ────────────────────────────────────────────────────────────────
+  const TOOLS_URL = 'https://wooahouse.com/tools.json';
+  let _tools = null, _fetchPromise = null;
+
+  function fetchTools() {
+    if (_tools) return Promise.resolve(_tools);
+    if (_fetchPromise) return _fetchPromise;
+    _fetchPromise = fetch(TOOLS_URL)
+      .then(r => r.json())
+      .then(data => { _tools = data; return data; })
+      .catch(() => { _tools = []; return []; });
+    return _fetchPromise;
+  }
+
+  function openSearch() {
+    injectSearchStyle();
+    let modal = document.getElementById('wooa-search-modal');
+    if (!modal) {
+      modal = buildModal();
+      document.body.appendChild(modal);
+    }
+    modal.style.display = 'flex';
+    const inp = document.getElementById('ws-input');
+    inp.value = '';
+    inp.focus();
+    setResults('');
+    fetchTools().then(() => setResults(inp.value));
+  }
+
+  function closeSearch() {
+    const m = document.getElementById('wooa-search-modal');
+    if (m) m.style.display = 'none';
+  }
+
+  function setResults(q) {
+    const el = document.getElementById('ws-results');
+    if (!el) return;
+    const isEN = window.location.pathname.includes('/en/');
+    if (!q) {
+      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다') + '</div>';
+      return;
+    }
+    if (!_tools) {
+      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'Loading...' : '로딩 중...') + '</div>';
+      return;
+    }
+    const lower = q.toLowerCase();
+    const hits = _tools.filter(t =>
+      t.n.toLowerCase().includes(lower) ||
+      t.s.toLowerCase().includes(lower) ||
+      t.d.toLowerCase().includes(lower)
+    ).slice(0, 20);
+    if (!hits.length) {
+      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'No results found' : '검색 결과가 없습니다') + '</div>';
+      return;
+    }
+    el.innerHTML = hits.map(t => `
+      <div class="ws-item">
+        <a href="${t.su}" class="ws-site-badge" target="_blank" rel="noopener">${t.s}</a>
+        <div class="ws-item-right">
+          <a href="${t.u}" class="ws-tool-name">${t.n}</a>
+          ${t.d ? `<span class="ws-tool-desc">${t.d}</span>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  function buildModal() {
+    const isEN = window.location.pathname.includes('/en/');
+    const ph = isEN ? 'Search tools... (e.g. PDF, image, compress)' : '도구 검색... (예: PDF 분할, 이미지, 압축)';
+    const m = document.createElement('div');
+    m.id = 'wooa-search-modal';
+    m.innerHTML = `
+      <div id="ws-backdrop"></div>
+      <div id="ws-box" role="dialog" aria-modal="true" aria-label="통합 검색">
+        <div id="ws-header">
+          <span id="ws-search-icon">🔍</span>
+          <input id="ws-input" type="search" placeholder="${ph}" autocomplete="off" spellcheck="false"/>
+          <button id="ws-close-btn" aria-label="닫기">✕</button>
+        </div>
+        <div id="ws-results">
+          <div class="ws-hint">${isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다'}</div>
+        </div>
+        <div id="ws-footer">
+          <span>↵ ${isEN ? 'Go' : '이동'}</span>
+          <span>Esc ${isEN ? 'Close' : '닫기'}</span>
+          <span>Ctrl+K ${isEN ? 'Open' : '열기'}</span>
+          <a href="https://wooahouse.com/search.html" id="ws-full-link" target="_blank" rel="noopener">
+            ${isEN ? '🔎 Full search page' : '🔎 전체 검색 페이지'}
+          </a>
+        </div>
+      </div>`;
+    m.querySelector('#ws-backdrop').addEventListener('click', closeSearch);
+    m.querySelector('#ws-close-btn').addEventListener('click', closeSearch);
+    m.querySelector('#ws-input').addEventListener('input', e => setResults(e.target.value.trim()));
+    m.querySelector('#ws-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const first = document.querySelector('#ws-results .ws-tool-name');
+        if (first) window.location.href = first.href;
+      }
+    });
+    return m;
+  }
+
+  function injectSearchStyle() {
+    if (document.getElementById('ws-style')) return;
+    const s = document.createElement('style');
+    s.id = 'ws-style';
+    s.textContent = `
+#wooa-search-modal{display:none;position:fixed;inset:0;z-index:99999;align-items:flex-start;justify-content:center;padding-top:80px}
+#ws-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(3px)}
+#ws-box{position:relative;z-index:1;background:#fff;border-radius:16px;width:100%;max-width:620px;max-height:70vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.25);overflow:hidden}
+#ws-header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #e5e7eb}
+#ws-search-icon{font-size:18px;flex-shrink:0}
+#ws-input{flex:1;border:none;outline:none;font-size:16px;background:transparent;color:#111;min-width:0}
+#ws-input::placeholder{color:#9ca3af}
+#ws-close-btn{background:none;border:none;cursor:pointer;font-size:16px;color:#6b7280;padding:4px 6px;border-radius:6px;line-height:1}
+#ws-close-btn:hover{background:#f3f4f6;color:#111}
+#ws-results{overflow-y:auto;flex:1;padding:8px 0}
+.ws-hint{padding:20px 16px;color:#9ca3af;font-size:14px;text-align:center}
+.ws-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;transition:background .12s}
+.ws-item:hover{background:#f9fafb}
+.ws-site-badge{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:#eff6ff;color:#2563eb;text-decoration:none;white-space:nowrap;transition:background .12s}
+.ws-site-badge:hover{background:#dbeafe}
+.ws-item-right{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ws-tool-name{font-size:14px;font-weight:600;color:#111;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ws-tool-name:hover{color:#2563eb;text-decoration:underline}
+.ws-tool-desc{font-size:12px;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ws-footer{display:flex;align-items:center;gap:16px;padding:8px 16px;border-top:1px solid #e5e7eb;background:#f9fafb;font-size:11px;color:#9ca3af}
+#ws-footer span{white-space:nowrap}
+#ws-full-link{margin-left:auto;font-size:11px;color:#6b7280;text-decoration:none;white-space:nowrap}
+#ws-full-link:hover{color:#2563eb}
+@media(max-width:640px){#wooa-search-modal{padding-top:0;align-items:flex-end}#ws-box{border-radius:16px 16px 0 0;max-height:80vh}}
+`;
+    document.head.appendChild(s);
+  }
+
+  // Ctrl+K / Esc 단축키
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+    else if (e.key === 'Escape') closeSearch();
+  });
+
+  // ── 사이트 바 렌더링 ─────────────────────────────────────────────────────────
   const currentHost = window.location.hostname;
   const isEN = window.location.pathname.includes('/en/');
   const label = isEN ? '🏠 WooaHouse Family Sites' : '🏠 우아하우스 패밀리 사이트 · 도구모음';
 
-  // 기존 our-sites-bar 교체 또는 header 뒤에 삽입
   const existing = document.querySelector('.our-sites-bar');
   const bar = document.createElement('div');
   bar.className = 'our-sites-bar';
@@ -35,8 +177,15 @@
       <div class="our-sites-links">
         ${SITES.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}</a>`).join('')}
       </div>
-    </div>
-  `;
+      <button class="ws-open-btn" title="${isEN ? 'Search tools (Ctrl+K)' : '도구 검색 (Ctrl+K)'}">🔍 ${isEN ? 'Search' : '검색'}</button>
+    </div>`;
+
+  bar.querySelector('.ws-open-btn').addEventListener('click', openSearch);
+
+  // .ws-open-btn 스타일 (sites-bar 내 버튼)
+  const btnStyle = document.createElement('style');
+  btnStyle.textContent = `.ws-open-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:inherit;border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}.ws-open-btn:hover{background:rgba(255,255,255,.28)}`;
+  document.head.appendChild(btnStyle);
 
   if (existing) {
     existing.replaceWith(bar);
