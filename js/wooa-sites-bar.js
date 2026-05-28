@@ -68,23 +68,30 @@
       return;
     }
     const lower = q.toLowerCase();
-    const hits = _tools.filter(t =>
-      t.n.toLowerCase().includes(lower) ||
-      t.s.toLowerCase().includes(lower) ||
-      t.d.toLowerCase().includes(lower)
-    ).slice(0, 20);
+    const hits = _tools.filter(t => {
+      const name = isEN ? (t.ne || t.n) : t.n;
+      const desc = isEN ? (t.de || t.d) : t.d;
+      return name.toLowerCase().includes(lower) ||
+             t.s.toLowerCase().includes(lower) ||
+             (desc && desc.toLowerCase().includes(lower));
+    }).slice(0, 20);
     if (!hits.length) {
       el.innerHTML = '<div class="ws-hint">' + (isEN ? 'No results found' : '검색 결과가 없습니다') + '</div>';
       return;
     }
-    el.innerHTML = hits.map(t => `
+    el.innerHTML = hits.map(t => {
+      const name = isEN ? (t.ne || t.n) : t.n;
+      const url  = isEN ? (t.ue || t.u) : t.u;
+      const desc = isEN ? (t.de || t.d) : t.d;
+      return `
       <div class="ws-item">
         <a href="${t.su}" class="ws-site-badge" target="_blank" rel="noopener">${t.s}</a>
         <div class="ws-item-right">
-          <a href="${t.u}" class="ws-tool-name">${t.n}</a>
-          ${t.d ? `<span class="ws-tool-desc">${t.d}</span>` : ''}
+          <a href="${url}" class="ws-tool-name">${name}</a>
+          ${desc ? `<span class="ws-tool-desc">${desc}</span>` : ''}
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   function buildModal() {
@@ -107,7 +114,7 @@
           <span>↵ ${isEN ? 'Go' : '이동'}</span>
           <span>Esc ${isEN ? 'Close' : '닫기'}</span>
           <span>Ctrl+K ${isEN ? 'Open' : '열기'}</span>
-          <a href="https://wooahouse.com/search.html" id="ws-full-link" target="_blank" rel="noopener">
+          <a href="${isEN ? 'https://wooahouse.com/en/search.html' : 'https://wooahouse.com/search.html'}" id="ws-full-link" target="_blank" rel="noopener">
             ${isEN ? '🔎 Full search page' : '🔎 전체 검색 페이지'}
           </a>
         </div>
