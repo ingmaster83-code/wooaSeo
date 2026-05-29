@@ -2,6 +2,9 @@
  * wooa-sidebar.js (KO)
  * tool-sidebar / index-sidebar: AdSense(1419180025) + Coupang(974224)
  * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
+ *
+ * ※ Coupang 주의: G()를 onload 콜백에서 직접 호출하면 document.currentScript=null
+ *   → 위젯이 body 끝에 붙어버림. 인라인 script textContent 방식으로 호출해야 함.
  */
 (function () {
   function init() {
@@ -26,31 +29,35 @@
       return ins;
     }
 
-    // AdSense 1
+    // ── AdSense 1 ──────────────────────────────────────────
     var card1 = mkCard();
     card1.appendChild(mkIns('1419180025'));
     t.appendChild(card1);
     (window.adsbygoogle = window.adsbygoogle || []).push({});
 
-    // Coupang
+    // ── Coupang ────────────────────────────────────────────
     var coupangCard = mkCard('margin-top:16px;overflow:hidden');
-    var coupangScript = document.createElement('script');
-    coupangScript.src = 'https://ads-partners.coupang.com/g.js';
-    coupangScript.async = true;
-    coupangScript.onload = function () {
-      new PartnersCoupang.G({
-        id: 974224,
-        trackingCode: 'AF5600192',
-        subId: null,
-        template: 'carousel',
-        width: '300',
-        height: '250'
-      });
-    };
-    coupangCard.appendChild(coupangScript);
     t.appendChild(coupangCard);
 
-    // 쿠팡 파트너스 고지
+    function callCoupang() {
+      // 인라인 script로 호출 → 실행 시 document.currentScript = callScript (coupangCard 안)
+      // → Coupang G()가 currentScript.parentElement = coupangCard 를 삽입 지점으로 사용
+      var callScript = document.createElement('script');
+      callScript.textContent = 'new PartnersCoupang.G({id:974224,trackingCode:"AF5600192",subId:null,template:"carousel",width:"300",height:"250"});';
+      coupangCard.appendChild(callScript);
+    }
+
+    if (typeof PartnersCoupang !== 'undefined') {
+      callCoupang();
+    } else {
+      var gs = document.createElement('script');
+      gs.src = 'https://ads-partners.coupang.com/g.js';
+      gs.async = true;
+      gs.onload = callCoupang;
+      coupangCard.appendChild(gs);
+    }
+
+    // ── 쿠팡 파트너스 고지 ──────────────────────────────────
     var p = document.createElement('p');
     p.style.cssText = 'margin-top:8px;font-size:.72rem;color:#9CA3AF;line-height:1.5;text-align:center';
     p.innerHTML = '이 포스팅은 쿠팡 파트너스 활동의 일환으로,<br>이에 따른 일정액의 수수료를 제공받습니다.';
