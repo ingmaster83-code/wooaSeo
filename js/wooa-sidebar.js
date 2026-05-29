@@ -60,11 +60,6 @@
       document.head.appendChild(gs);
     }
 
-    // ── 쿠팡 파트너스 고지 ──────────────────────────────────
-    var p = document.createElement('p');
-    p.style.cssText = 'margin-top:8px;font-size:.72rem;color:#9CA3AF;line-height:1.5;text-align:center';
-    p.innerHTML = '이 포스팅은 쿠팡 파트너스 활동의 일환으로,<br>이에 따른 일정액의 수수료를 제공받습니다.';
-    t.appendChild(p);
   }
 
   if (document.readyState === 'loading') {

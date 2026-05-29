@@ -40,6 +40,7 @@
           '</div>' +
         '</div>' +
         '<div class="footer-bottom">&copy; 2026 WooaHouse. All rights reserved.</div>' +
+        '<div style="text-align:center;padding:8px 20px 0;font-size:.72rem;color:#4B5563;line-height:1.6">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>' +
       '</div>';
   }
 
