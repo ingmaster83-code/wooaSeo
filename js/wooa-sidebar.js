@@ -1,8 +1,8 @@
 /**
  * wooa-sidebar.js (KO)
- * tool-sidebar / index-sidebar: AdSense(1419180025) + Coupang(974224)
- * 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
- * EN 페이지는 wooa-sidebar-en.js 사용
+ * tool-sidebar : AdSense(1419180025) + Coupang(974224)
+ * index-sidebar: AdSense(1419180025) + AdSense(6255378195) + Coupang(974224)
+ * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
  */
 (function () {
   function init() {
@@ -30,14 +30,23 @@
       return ins;
     }
 
-    // AdSense 1
+    // AdSense 1 (공통)
     var card1 = mkCard();
     card1.appendChild(mkIns('1419180025'));
     t.appendChild(card1);
     (window.adsbygoogle = window.adsbygoogle || []).push({});
 
-    // Coupang
-    var card2 = mkCard('margin-top:16px;overflow:hidden');
+    // AdSense 2 — 인덱스 페이지 전용
+    // (도구 페이지는 wooahouse-originals-tool.js 가 인콘텐츠로 처리)
+    if (isIndex) {
+      var card2 = mkCard('margin-top:16px');
+      card2.appendChild(mkIns('6255378195'));
+      t.appendChild(card2);
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
+
+    // Coupang (공통)
+    var coupangCard = mkCard('margin-top:16px;overflow:hidden');
     var coupangScript = document.createElement('script');
     coupangScript.src = 'https://ads-partners.coupang.com/g.js';
     coupangScript.async = true;
@@ -51,8 +60,8 @@
         height: '250'
       });
     };
-    card2.appendChild(coupangScript);
-    t.appendChild(card2);
+    coupangCard.appendChild(coupangScript);
+    t.appendChild(coupangCard);
 
     // 쿠팡 파트너스 고지
     var p = document.createElement('p');

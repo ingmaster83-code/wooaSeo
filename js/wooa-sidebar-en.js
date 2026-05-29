@@ -1,7 +1,8 @@
 /**
  * wooa-sidebar-en.js (EN)
- * tool-sidebar / index-sidebar: AdSense(1419180025)
- * 인콘텐츠 광고는 wooahouse-originals-tool-en.js 에서 처리
+ * tool-sidebar : AdSense(1419180025)
+ * index-sidebar: AdSense(1419180025) + AdSense(6255378195)
+ * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool-en.js 에서 처리
  * Coupang 없음 (EN 페이지)
  */
 (function () {
@@ -30,11 +31,19 @@
       return ins;
     }
 
-    // AdSense 1
+    // AdSense 1 (공통)
     var card1 = mkCard();
     card1.appendChild(mkIns('1419180025'));
     t.appendChild(card1);
     (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+    // AdSense 2 — 인덱스 페이지 전용
+    if (isIndex) {
+      var card2 = mkCard('margin-top:16px');
+      card2.appendChild(mkIns('6255378195'));
+      t.appendChild(card2);
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    }
   }
 
   if (document.readyState === 'loading') {
