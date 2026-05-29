@@ -9,20 +9,10 @@
     var t = document.querySelector('.tool-sidebar') || document.querySelector('.index-sidebar');
     if (!t || t.children.length > 0) return;
 
-    var isIndex = t.classList.contains('index-sidebar');
-    var c = isIndex ? 'index-ad-card' : 'ad-card';
-
-    function mkCard(extraStyle) {
-      var d = document.createElement('div');
-      d.className = c;
-      if (extraStyle) d.style.cssText = extraStyle;
-      return d;
-    }
-
     function mkIns(slot) {
       var ins = document.createElement('ins');
       ins.className = 'adsbygoogle';
-      ins.style.cssText = 'display:block;width:100%;min-height:250px';
+      ins.style.cssText = 'display:block;width:100%';
       ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
       ins.setAttribute('data-ad-slot', slot);
       ins.setAttribute('data-ad-format', 'auto');
@@ -30,10 +20,10 @@
       return ins;
     }
 
-    // AdSense 1
-    var card1 = mkCard();
-    card1.appendChild(mkIns('1419180025'));
-    t.appendChild(card1);
+    var card = document.createElement('div');
+    card.className = 'ad-card';
+    card.appendChild(mkIns('1419180025'));
+    t.appendChild(card);
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   }
 

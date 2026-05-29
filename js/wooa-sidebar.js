@@ -8,12 +8,9 @@
     var t = document.querySelector('.tool-sidebar') || document.querySelector('.index-sidebar');
     if (!t || t.children.length > 0) return;
 
-    var isIndex = t.classList.contains('index-sidebar');
-    var c = isIndex ? 'index-ad-card' : 'ad-card';
-
     function mkCard(extraStyle) {
       var d = document.createElement('div');
-      d.className = c;
+      d.className = 'ad-card';
       if (extraStyle) d.style.cssText = extraStyle;
       return d;
     }
@@ -21,7 +18,7 @@
     function mkIns(slot) {
       var ins = document.createElement('ins');
       ins.className = 'adsbygoogle';
-      ins.style.cssText = 'display:block;width:100%;min-height:250px';
+      ins.style.cssText = 'display:block;width:100%';
       ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
       ins.setAttribute('data-ad-slot', slot);
       ins.setAttribute('data-ad-format', 'auto');
