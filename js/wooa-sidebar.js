@@ -3,8 +3,7 @@
  * tool-sidebar / index-sidebar: AdSense(1419180025) + Coupang(974224)
  * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
  *
- * ※ Coupang 주의: G()를 onload 콜백에서 직접 호출하면 document.currentScript=null
- *   → 위젯이 body 끝에 붙어버림. 인라인 script textContent 방식으로 호출해야 함.
+ * Coupang G()는 body에 강제 append → MutationObserver로 잡아서 카드 안으로 이동
  */
 (function () {
   function init() {
@@ -39,22 +38,43 @@
     var coupangCard = mkCard('margin-top:16px;overflow:hidden');
     t.appendChild(coupangCard);
 
-    function callCoupang() {
-      // 인라인 script로 호출 → 실행 시 document.currentScript = callScript (coupangCard 안)
-      // → Coupang G()가 currentScript.parentElement = coupangCard 를 삽입 지점으로 사용
-      var callScript = document.createElement('script');
-      callScript.textContent = 'new PartnersCoupang.G({id:974224,trackingCode:"AF5600192",subId:null,template:"carousel",width:"300",height:"250"});';
-      coupangCard.appendChild(callScript);
+    function loadAndRenderCoupang() {
+      // G()가 body에 append하는 요소를 잡아 coupangCard로 이동
+      var snapshot = new Set(Array.from(document.body.children));
+
+      var obs = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          m.addedNodes.forEach(function (node) {
+            if (node.nodeType === 1 && !snapshot.has(node) && node.parentNode === document.body) {
+              coupangCard.appendChild(node);
+              obs.disconnect();
+            }
+          });
+        });
+      });
+      obs.observe(document.body, { childList: true });
+
+      new PartnersCoupang.G({
+        id: 974224,
+        trackingCode: 'AF5600192',
+        subId: null,
+        template: 'carousel',
+        width: '300',
+        height: '250'
+      });
+
+      // 안전장치: 5초 후 observer 해제
+      setTimeout(function () { obs.disconnect(); }, 5000);
     }
 
     if (typeof PartnersCoupang !== 'undefined') {
-      callCoupang();
+      loadAndRenderCoupang();
     } else {
       var gs = document.createElement('script');
       gs.src = 'https://ads-partners.coupang.com/g.js';
       gs.async = true;
-      gs.onload = callCoupang;
-      coupangCard.appendChild(gs);
+      gs.onload = loadAndRenderCoupang;
+      document.head.appendChild(gs);
     }
 
     // ── 쿠팡 파트너스 고지 ──────────────────────────────────
