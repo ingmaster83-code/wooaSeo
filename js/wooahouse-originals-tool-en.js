@@ -125,6 +125,19 @@
   `;
   document.head.appendChild(style);
 
+  // ── 인콘텐츠 광고 ──────────────────────────────────────────
+  const adWrap = document.createElement('div');
+  adWrap.style.cssText = 'margin: 0 auto 0; max-width: 800px; padding: 0 1rem;';
+  const ins = document.createElement('ins');
+  ins.className = 'adsbygoogle';
+  ins.style.cssText = 'display:block';
+  ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+  ins.setAttribute('data-ad-slot', '6255378195');
+  ins.setAttribute('data-ad-format', 'auto');
+  ins.setAttribute('data-full-width-responsive', 'true');
+  adWrap.appendChild(ins);
+
+  // ── 위젯 ───────────────────────────────────────────────────
   const wrap = document.createElement('div');
   wrap.className = 'wooa-tool-wrap';
   wrap.innerHTML = `
@@ -146,11 +159,18 @@
     </div>
   `;
 
+  // 광고 + 위젯을 하나의 컨테이너로 묶기
+  const container = document.createElement('div');
+  container.appendChild(adWrap);
+  container.appendChild(wrap);
+
   const anchor = document.querySelector('.wooa-orig-anchor');
-  if (anchor) anchor.replaceWith(wrap);
+  if (anchor) anchor.replaceWith(container);
   else {
     const footer = document.querySelector('footer');
-    if (footer) footer.before(wrap);
-    else document.body.appendChild(wrap);
+    if (footer) footer.before(container);
+    else document.body.appendChild(container);
   }
+
+  (window.adsbygoogle = window.adsbygoogle || []).push({});
 })();
