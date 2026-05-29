@@ -3,7 +3,7 @@
  * tool-sidebar / index-sidebar: AdSense(1419180025) + Coupang(974224)
  * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
  *
- * Coupang G()는 body에 강제 append → MutationObserver로 잡아서 카드 안으로 이동
+ * Coupang G() : container 파라미터에 DOM 노드 전달 → 해당 요소에 직접 append
  */
 (function () {
   function init() {
@@ -38,42 +38,25 @@
     var coupangCard = mkCard('margin-top:16px;overflow:hidden');
     t.appendChild(coupangCard);
 
-    function loadAndRenderCoupang() {
-      // G()가 body에 append하는 요소를 잡아 coupangCard로 이동
-      var snapshot = new Set(Array.from(document.body.children));
-
-      var obs = new MutationObserver(function (mutations) {
-        mutations.forEach(function (m) {
-          m.addedNodes.forEach(function (node) {
-            if (node.nodeType === 1 && !snapshot.has(node) && node.parentNode === document.body) {
-              coupangCard.appendChild(node);
-              obs.disconnect();
-            }
-          });
-        });
-      });
-      obs.observe(document.body, { childList: true });
-
+    function renderCoupang() {
       new PartnersCoupang.G({
         id: 974224,
         trackingCode: 'AF5600192',
         subId: null,
         template: 'carousel',
         width: '300',
-        height: '250'
+        height: '250',
+        container: coupangCard   // ← DOM 노드 직접 지정
       });
-
-      // 안전장치: 5초 후 observer 해제
-      setTimeout(function () { obs.disconnect(); }, 5000);
     }
 
     if (typeof PartnersCoupang !== 'undefined') {
-      loadAndRenderCoupang();
+      renderCoupang();
     } else {
       var gs = document.createElement('script');
       gs.src = 'https://ads-partners.coupang.com/g.js';
       gs.async = true;
-      gs.onload = loadAndRenderCoupang;
+      gs.onload = renderCoupang;
       document.head.appendChild(gs);
     }
 
