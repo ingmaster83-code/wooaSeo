@@ -936,3 +936,13 @@ footer {
 .footer-col a:hover{color:#10B981;}
 .footer-bottom{text-align:center;border-top:1px solid #1F2937;padding-top:20px;color:#6B7280;font-size:.82rem;}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+
+
+/* ===== Related Tools Section ===== */
+.related-tools{margin:32px 0 24px;}
+.related-tools h2{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--text,#1F2937);padding-bottom:8px;border-bottom:2px solid var(--primary,#0EA5E9);}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.related-card{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;background:var(--card-bg,#F9FAFB);border:1px solid var(--border,#E5E7EB);border-radius:10px;text-decoration:none;color:var(--text,#1F2937);transition:border-color .2s,transform .2s;font-size:.8rem;text-align:center;font-weight:500;}
+.related-card:hover{border-color:var(--primary,#0EA5E9);transform:translateY(-2px);}
+.related-icon{font-size:1.4rem;line-height:1;}
+@media(max-width:600px){.related-grid{grid-template-columns:repeat(2,1fr);}}
