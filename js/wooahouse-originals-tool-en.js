@@ -1,23 +1,23 @@
 (function () {
   const SITES = [
-    { host: 'pdfkit.wooahouse.com',      badge: 'WOOOAPDF',    color: '#FF4444', icon: '📄', title: 'Free Online PDF Tools',           url: 'https://pdfkit.wooahouse.com' },
-    { host: 'imagekit.wooahouse.com',     badge: 'WOOAIMAGE',   color: '#6366F1', icon: '🖼️', title: 'Free Online Image Tools',         url: 'https://imagekit.wooahouse.com' },
-    { host: 'colorkit.wooahouse.com',     badge: 'WOOACOLOR',   color: '#F59E0B', icon: '🎨', title: 'Color Picker & Palette',          url: 'https://colorkit.wooahouse.com' },
-    { host: 'textkit.wooahouse.com',      badge: 'WOOATEXT',    color: '#10B981', icon: '✏️', title: 'Text Transform Tools',            url: 'https://textkit.wooahouse.com' },
-    { host: 'qrkit.wooahouse.com',        badge: 'WOOAQR',      color: '#3B82F6', icon: '📱', title: 'QR Code Generator',               url: 'https://qrkit.wooahouse.com' },
-    { host: 'calckit.wooahouse.com',      badge: 'WOOALCALC',   color: '#8B5CF6', icon: '🧮', title: 'Unit Converter & Calculator',     url: 'https://calckit.wooahouse.com' },
-    { host: 'fontkit.wooahouse.com',      badge: 'WOOAFONT',    color: '#EC4899', icon: '🔤', title: 'Free Commercial Fonts',           url: 'https://fontkit.wooahouse.com' },
-    { host: 'mactools.wooahouse.com',     badge: 'WOOAMAC',     color: '#6B7280', icon: '🍎', title: 'Essential Mac Apps',              url: 'https://mactools.wooahouse.com' },
-    { host: 'pctools.wooahouse.com',      badge: 'WOOAPC',      color: '#0EA5E9', icon: '🖥️', title: 'Essential Windows Programs',      url: 'https://pctools.wooahouse.com' },
-    { host: 'vskit.wooahouse.com',        badge: 'WOOAVS',      color: '#007ACC', icon: '💻', title: 'VS Code Extensions',              url: 'https://vskit.wooahouse.com' },
-    { host: 'wooaaudio.wooahouse.com',    badge: 'WOOAAUDIO',   color: '#F97316', icon: '🎵', title: 'Online Audio Tools',              url: 'https://wooaaudio.wooahouse.com' },
-    { host: 'wooavideo.wooahouse.com',    badge: 'WOOAVIDEO',   color: '#EF4444', icon: '🎬', title: 'Online Video Tools',              url: 'https://wooavideo.wooahouse.com' },
-    { host: 'wooaviewer.wooahouse.com',   badge: 'WOOAVIEWER',  color: '#14B8A6', icon: '🔍', title: 'File Viewer Collection',          url: 'https://wooaviewer.wooahouse.com' },
-    { host: 'wooadev.wooahouse.com',      badge: 'WOOADEV',     color: '#64748B', icon: '🛠️', title: 'Developer Tools',                 url: 'https://wooadev.wooahouse.com' },
-    { host: 'wooaocr.wooahouse.com',      badge: 'WOOAOCR',     color: '#A855F7', icon: '🔎', title: 'OCR — Extract Text from Images',  url: 'https://wooaocr.wooahouse.com' },
-    { host: 'wooasheet.wooahouse.com',    badge: 'WOOASHEET',   color: '#22C55E', icon: '📊', title: 'Online Spreadsheet Tools',        url: 'https://wooasheet.wooahouse.com' },
-    { host: 'wooaseo.wooahouse.com',      badge: 'WOOASEO',     color: '#F59E0B', icon: '🔎', title: 'SEO Analysis Tools',              url: 'https://wooaseo.wooahouse.com' },
-    { host: 'wooagosa.wooahouse.com',     badge: 'WOOAGOSA',    color: '#6366F1', icon: '📝', title: 'Free License Mock Tests',         url: 'https://wooagosa.wooahouse.com' },
+    { host: 'pdfkit.wooahouse.com',      color: '#FF4444', icon: '📄', short: 'PDF Tools',       url: 'https://pdfkit.wooahouse.com' },
+    { host: 'imagekit.wooahouse.com',     color: '#6366F1', icon: '🖼️', short: 'Image Tools',    url: 'https://imagekit.wooahouse.com' },
+    { host: 'colorkit.wooahouse.com',     color: '#F59E0B', icon: '🎨', short: 'Color Tools',     url: 'https://colorkit.wooahouse.com' },
+    { host: 'textkit.wooahouse.com',      color: '#10B981', icon: '✏️', short: 'Text Tools',     url: 'https://textkit.wooahouse.com' },
+    { host: 'qrkit.wooahouse.com',        color: '#3B82F6', icon: '📱', short: 'QR Code',         url: 'https://qrkit.wooahouse.com' },
+    { host: 'calckit.wooahouse.com',      color: '#8B5CF6', icon: '🧮', short: 'Calculator',      url: 'https://calckit.wooahouse.com' },
+    { host: 'fontkit.wooahouse.com',      color: '#EC4899', icon: '🔤', short: 'Free Fonts',      url: 'https://fontkit.wooahouse.com' },
+    { host: 'mactools.wooahouse.com',     color: '#6B7280', icon: '🍎', short: 'Mac Apps',        url: 'https://mactools.wooahouse.com' },
+    { host: 'pctools.wooahouse.com',      color: '#0EA5E9', icon: '🖥️', short: 'PC Apps',        url: 'https://pctools.wooahouse.com' },
+    { host: 'vskit.wooahouse.com',        color: '#007ACC', icon: '💻', short: 'VS Code',         url: 'https://vskit.wooahouse.com' },
+    { host: 'wooaaudio.wooahouse.com',    color: '#F97316', icon: '🎵', short: 'Audio Tools',     url: 'https://wooaaudio.wooahouse.com' },
+    { host: 'wooavideo.wooahouse.com',    color: '#EF4444', icon: '🎬', short: 'Video Tools',     url: 'https://wooavideo.wooahouse.com' },
+    { host: 'wooaviewer.wooahouse.com',   color: '#14B8A6', icon: '🔍', short: 'File Viewer',     url: 'https://wooaviewer.wooahouse.com' },
+    { host: 'wooadev.wooahouse.com',      color: '#64748B', icon: '🛠️', short: 'Dev Tools',      url: 'https://wooadev.wooahouse.com' },
+    { host: 'wooaocr.wooahouse.com',      color: '#A855F7', icon: '🔎', short: 'OCR',             url: 'https://wooaocr.wooahouse.com' },
+    { host: 'wooasheet.wooahouse.com',    color: '#22C55E', icon: '📊', short: 'Spreadsheet',     url: 'https://wooasheet.wooahouse.com' },
+    { host: 'wooaseo.wooahouse.com',      color: '#F59E0B', icon: '🔎', short: 'SEO Tools',       url: 'https://wooaseo.wooahouse.com' },
+    { host: 'wooagosa.wooahouse.com',     color: '#6366F1', icon: '📝', short: 'Mock Tests',      url: 'https://wooagosa.wooahouse.com' },
   ];
 
   function bgLuminance() {
@@ -40,32 +40,15 @@
   const style = document.createElement('style');
   style.textContent = `
     .wooa-tool-wrap {
-      margin: 2rem auto;
-      max-width: 800px;
-      padding: 0 1rem;
+      margin: 32px 0 24px;
     }
-    .wooa-tool-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-    .wooa-tool-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #3B82F6;
-      flex-shrink: 0;
-    }
-    .wooa-tool-label {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      color: ${dark ? '#e2e8f0' : '#333'};
-    }
-    .wooa-tool-sub {
-      font-size: 12px;
-      color: ${dark ? '#94a3b8' : '#999'};
-      margin: 0 0 12px 16px;
+    .wooa-tool-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 14px;
+      color: ${dark ? '#e2e8f0' : '#1F2937'};
+      padding-bottom: 8px;
+      border-bottom: 2px solid #3B82F6;
     }
     .wooa-tool-grid {
       display: grid;
@@ -76,17 +59,21 @@
       .wooa-tool-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .wooa-tool-card {
-      background: ${dark ? '#1e293b' : '#fff'};
-      border: 1px solid ${dark ? '#334155' : '#e5e7eb'};
+      background: ${dark ? '#1e293b' : '#F9FAFB'};
+      border: 1px solid ${dark ? '#334155' : '#E5E7EB'};
       border-radius: 10px;
-      padding: 12px 14px;
+      padding: 14px 10px;
       text-decoration: none;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      transition: box-shadow .15s, transform .15s;
+      transition: border-color .2s, transform .2s;
+      font-size: .8rem;
+      font-weight: 500;
     }
     .wooa-tool-card::before {
       content: '';
@@ -96,30 +83,17 @@
       background: var(--wooa-color);
     }
     .wooa-tool-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,${dark ? '.4' : '.1'});
-      transform: translateY(-1px);
+      border-color: var(--wooa-color);
+      transform: translateY(-2px);
     }
     .wooa-tool-icon {
-      font-size: 22px;
+      font-size: 1.4rem;
       line-height: 1;
-      flex-shrink: 0;
-    }
-    .wooa-tool-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-    .wooa-tool-badge {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .05em;
-      color: ${dark ? '#64748b' : '#aaa'};
     }
     .wooa-tool-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: ${dark ? '#e2e8f0' : '#111'};
+      font-size: .8rem;
+      font-weight: 500;
+      color: ${dark ? '#e2e8f0' : '#1F2937'};
       line-height: 1.3;
     }
   `;
@@ -141,19 +115,12 @@
   const wrap = document.createElement('div');
   wrap.className = 'wooa-tool-wrap';
   wrap.innerHTML = `
-    <div class="wooa-tool-header">
-      <span class="wooa-tool-dot"></span>
-      <span class="wooa-tool-label">🛠️ More tools to try</span>
-    </div>
-    <p class="wooa-tool-sub">All free at WooaHouse</p>
+    <h2 class="wooa-tool-heading">🛠️ More tools to try</h2>
     <div class="wooa-tool-grid">
       ${picks.map(s => `
         <a href="${s.url}?utm_source=${utmSource}&utm_medium=originals&utm_campaign=wooahouse" class="wooa-tool-card" style="--wooa-color:${s.color}" target="_blank" rel="noopener">
           <span class="wooa-tool-icon">${s.icon}</span>
-          <div class="wooa-tool-info">
-            <span class="wooa-tool-badge">${s.badge}</span>
-            <span class="wooa-tool-title">${s.title}</span>
-          </div>
+          <span class="wooa-tool-title">${s.short}</span>
         </a>
       `).join('')}
     </div>
