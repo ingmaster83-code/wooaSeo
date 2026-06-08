@@ -134,6 +134,27 @@
     if (el) el.remove();
   };
 
+  // ── result-panel 광고 지연 로드 (hidden container 위반 방지) ──────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.querySelector('.result-panel');
+    if (!panel) return;
+    var adPushed = false;
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        if (adPushed) return;
+        if (m.attributeName === 'style' && m.target.style.display !== 'none') {
+          adPushed = true;
+          observer.disconnect();
+          var ins = panel.querySelector('.adsbygoogle');
+          if (ins) {
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+          }
+        }
+      });
+    });
+    observer.observe(panel, { attributes: true, attributeFilter: ['style'] });
+  });
+
   // ── 변환 광고 모달 ────────────────────────────────────────────────────────
   window.showConvertAd = function (callback) {
     if (window.matchMedia('(display-mode: standalone)').matches) { callback(); return; }
