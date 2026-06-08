@@ -107,7 +107,7 @@
 
   // ── 인콘텐츠 광고 ──────────────────────────────────────────
   const adWrap = document.createElement('div');
-  adWrap.style.cssText = 'margin: 0 auto 0; max-width: 800px; padding: 0 1rem;';
+  adWrap.style.cssText = 'margin: 0 auto 32px; max-width: 800px; padding: 0 1rem;';
   const ins = document.createElement('ins');
   ins.className = 'adsbygoogle';
   ins.style.cssText = 'display:block';
