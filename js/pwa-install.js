@@ -156,20 +156,34 @@
           ' data-ad-slot="9432796175"' +
           ' data-ad-format="auto"' +
           ' data-full-width-responsive="true"></ins>' +
-        '<button id="dl-ad-close">닫기</button>' +
+        '<button id="dl-ad-close">닫기 (5)</button>' +
       '</div>';
     document.body.appendChild(overlay);
 
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
 
+    var finished = false;
     var finish = function () {
+      if (finished) return;
+      finished = true;
+      clearInterval(countdown);
       var ov = document.getElementById('dl-ad-overlay');
       if (ov) ov.remove();
       callback();
     };
 
-    document.getElementById('dl-ad-close').addEventListener('click', finish);
-    setTimeout(finish, 5000);
+    var count = 5;
+    var closeBtn = document.getElementById('dl-ad-close');
+    var countdown = setInterval(function () {
+      count--;
+      if (count > 0) {
+        closeBtn.textContent = '닫기 (' + count + ')';
+      } else {
+        finish();
+      }
+    }, 1000);
+
+    closeBtn.addEventListener('click', finish);
   };
 
 })();
