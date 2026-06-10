@@ -35,6 +35,7 @@
           '</div>' +
           '<div class="footer-col">' +
             '<h4>Info</h4>' +
+            '<a href="https://blog.wooahouse.com" target="_blank">✍️ Blog</a>' +
             '<a href="about.html">About</a>' +
             '<a href="privacy.html">Privacy Policy</a>' +
           '</div>' +

@@ -35,6 +35,7 @@
           '</div>' +
           '<div class="footer-col">' +
             '<h4>정보</h4>' +
+            '<a href="https://blog.wooahouse.com" target="_blank">✍️ 블로그</a>' +
             '<a href="about.html">서비스 소개</a>' +
             '<a href="privacy.html">개인정보처리방침</a>' +
           '</div>' +
