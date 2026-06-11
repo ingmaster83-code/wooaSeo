@@ -63,22 +63,6 @@
     }
   });
 
-  // ── 변환 버튼 광고 인터스티셜 (capture phase) ─────────────────────────────
-  var adDone = false;
-
-  document.addEventListener('click', function (e) {
-    var id = e.target && e.target.id;
-    if (!id || CONVERT_IDS.indexOf(id) === -1) return;
-    if (adDone) return;
-    e.stopImmediatePropagation();
-    e.preventDefault();
-    var btn = e.target;
-    showConvertAd(function () {
-      adDone = true;
-      btn.click();
-    });
-  }, true);
-
   // ── PWA 배너 ─────────────────────────────────────────────────────────────
   window.showPWABanner = function () {
     if (sessionStorage.getItem('pwa_shown')) return;
@@ -154,45 +138,6 @@
     });
     observer.observe(panel, { attributes: true, attributeFilter: ['style'] });
   });
-
-  // ── 변환 광고 모달 ────────────────────────────────────────────────────────
-  window.showConvertAd = function (callback) {
-    if (window.matchMedia('(display-mode: standalone)').matches) { callback(); return; }
-
-    var style = document.createElement('style');
-    style.textContent = [
-      '#dl-ad-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:10000;display:flex;align-items:center;justify-content:center;animation:dlFadeIn .2s ease}',
-      '@keyframes dlFadeIn{from{opacity:0}to{opacity:1}}',
-      '#dl-ad-box{background:#fff;border-radius:16px;padding:20px 20px 16px;max-width:360px;width:92%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.4)}',
-      '#dl-ad-close{margin-top:14px;padding:7px 22px;background:#222;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.83rem}'
-    ].join('');
-    document.head.appendChild(style);
-
-    var overlay = document.createElement('div');
-    overlay.id = 'dl-ad-overlay';
-    overlay.innerHTML =
-      '<div id="dl-ad-box">' +
-        '<ins class="adsbygoogle" style="display:block;min-height:100px"' +
-          ' data-ad-client="ca-pub-6464921081676309"' +
-          ' data-ad-slot="9432796175"' +
-          ' data-ad-format="auto"' +
-          ' data-full-width-responsive="true"></ins>' +
-        '<button id="dl-ad-close">닫기 (5)</button>' +
-      '</div>';
-    document.body.appendChild(overlay);
-
-    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-
-    var finished = false;
-    var finish = function () {
-      if (finished) return;
-      finished = true;
-      clearInterval(countdown);
-      var ov = document.getElementById('dl-ad-overlay');
-      if (ov) ov.remove();
-      callback();
-    };
-
     var count = 5;
     var closeBtn = document.getElementById('dl-ad-close');
     var countdown = setInterval(function () {
