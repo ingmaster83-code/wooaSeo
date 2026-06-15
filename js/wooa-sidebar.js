@@ -1,9 +1,7 @@
 /**
  * wooa-sidebar.js (KO)
- * tool-sidebar / index-sidebar: AdSense(1419180025) + Coupang(974224)
+ * tool-sidebar / index-sidebar: AdSense(1419180025)
  * 도구 페이지 인콘텐츠 광고는 wooahouse-originals-tool.js 에서 처리
- *
- * Coupang G() : container 파라미터에 DOM 노드 전달 → 해당 요소에 직접 append
  */
 (function () {
   function init() {
@@ -33,33 +31,6 @@
     card1.appendChild(mkIns('1419180025'));
     t.appendChild(card1);
     (window.adsbygoogle = window.adsbygoogle || []).push({});
-
-    // ── Coupang ────────────────────────────────────────────
-    var coupangCard = mkCard('margin-top:16px;overflow:hidden');
-    t.appendChild(coupangCard);
-
-    function renderCoupang() {
-      new PartnersCoupang.G({
-        id: 974224,
-        trackingCode: 'AF5600192',
-        subId: null,
-        template: 'carousel',
-        width: '300',
-        height: '250',
-        container: coupangCard   // ← DOM 노드 직접 지정
-      });
-    }
-
-    if (typeof PartnersCoupang !== 'undefined') {
-      renderCoupang();
-    } else {
-      var gs = document.createElement('script');
-      gs.src = 'https://ads-partners.coupang.com/g.js';
-      gs.async = true;
-      gs.onload = renderCoupang;
-      document.head.appendChild(gs);
-    }
-
   }
 
   if (document.readyState === 'loading') {
