@@ -19,6 +19,12 @@
     { icon: '📊', name: 'WooaSheet', host: 'wooasheet.wooahouse.com', url: 'https://wooasheet.wooahouse.com/' },
     { icon: '🔎', name: 'WooaSEO',   host: 'wooaseo.wooahouse.com',   url: 'https://wooaseo.wooahouse.com/' },
     { icon: '📝', name: 'WooaGosa',  host: 'wooagosa.wooahouse.com',  url: 'https://wooagosa.wooahouse.com/' },
+    { divider: true },
+    { icon: '💊', name: '이약뭐야',   host: 'wooayak.wooahouse.com',   url: 'https://wooayak.wooahouse.com/',  info: true },
+    { icon: '🏥', name: '병원/약국',  host: 'hosppass.wooahouse.com',  url: 'https://hosppass.wooahouse.com/', info: true },
+    { icon: '📜', name: '자격증일정', host: 'gosapass.kr',              url: 'https://gosapass.kr/',            info: true },
+    { icon: '💰', name: '보조금',     host: 'bojopass.kr',             url: 'https://bojopass.kr/',            info: true },
+    { icon: '🏠', name: '청약정보',   host: 'aptpass.kr',              url: 'https://aptpass.kr/',             info: true },
   ];
 
   // ── 검색 모달 ────────────────────────────────────────────────────────────────
@@ -59,30 +65,31 @@
     const el = document.getElementById('ws-results');
     if (!el) return;
     const isEN = window.location.pathname.includes('/en/');
+    const isJA = window.location.pathname.includes('/ja/');
     if (!q) {
-      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다') + '</div>';
+      el.innerHTML = '<div class="ws-hint">' + (isJA ? 'WooaHouseの全ツールを検索します' : isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다') + '</div>';
       return;
     }
     if (!_tools) {
-      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'Loading...' : '로딩 중...') + '</div>';
+      el.innerHTML = '<div class="ws-hint">' + (isJA ? '読み込み中...' : isEN ? 'Loading...' : '로딩 중...') + '</div>';
       return;
     }
     const lower = q.toLowerCase();
     const hits = _tools.filter(t => {
-      const name = isEN ? (t.ne || t.n) : t.n;
-      const desc = isEN ? (t.de || t.d) : t.d;
+      const name = (isEN || isJA) ? (t.ne || t.n) : t.n;
+      const desc = (isEN || isJA) ? (t.de || t.d) : t.d;
       return name.toLowerCase().includes(lower) ||
              t.s.toLowerCase().includes(lower) ||
              (desc && desc.toLowerCase().includes(lower));
     }).slice(0, 20);
     if (!hits.length) {
-      el.innerHTML = '<div class="ws-hint">' + (isEN ? 'No results found' : '검색 결과가 없습니다') + '</div>';
+      el.innerHTML = '<div class="ws-hint">' + (isJA ? '検索結果が見つかりません' : isEN ? 'No results found' : '검색 결과가 없습니다') + '</div>';
       return;
     }
     el.innerHTML = hits.map(t => {
-      const name = isEN ? (t.ne || t.n) : t.n;
-      const url  = isEN ? (t.ue || t.u) : t.u;
-      const desc = isEN ? (t.de || t.d) : t.d;
+      const name = (isEN || isJA) ? (t.ne || t.n) : t.n;
+      const url  = (isEN || isJA) ? (t.ue || t.u) : t.u;
+      const desc = (isEN || isJA) ? (t.de || t.d) : t.d;
       return `
       <div class="ws-item">
         <a href="${t.su}" class="ws-site-badge" target="_blank" rel="noopener">${t.s}</a>
@@ -96,7 +103,8 @@
 
   function buildModal() {
     const isEN = window.location.pathname.includes('/en/');
-    const ph = isEN ? 'Search tools... (e.g. PDF, image, compress)' : '도구 검색... (예: PDF 분할, 이미지, 압축)';
+    const isJA = window.location.pathname.includes('/ja/');
+    const ph = isJA ? 'ツール検索... (例: PDF分割, 画像, 圧縮)' : isEN ? 'Search tools... (e.g. PDF, image, compress)' : '도구 검색... (예: PDF 분할, 이미지, 압축)';
     const m = document.createElement('div');
     m.id = 'wooa-search-modal';
     m.innerHTML = `
@@ -108,14 +116,14 @@
           <button id="ws-close-btn" aria-label="닫기">✕</button>
         </div>
         <div id="ws-results">
-          <div class="ws-hint">${isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다'}</div>
+          <div class="ws-hint">${isJA ? 'WooaHouseの全ツールを検索します' : isEN ? 'Search across all WooaHouse tools' : 'WooaHouse 전체 도구를 통합 검색합니다'}</div>
         </div>
         <div id="ws-footer">
-          <span>↵ ${isEN ? 'Go' : '이동'}</span>
-          <span>Esc ${isEN ? 'Close' : '닫기'}</span>
-          <span>Ctrl+K ${isEN ? 'Open' : '열기'}</span>
+          <span>↵ ${isJA ? '移動' : isEN ? 'Go' : '이동'}</span>
+          <span>Esc ${isJA ? '閉じる' : isEN ? 'Close' : '닫기'}</span>
+          <span>Ctrl+K ${isJA ? '開く' : isEN ? 'Open' : '열기'}</span>
           <a href="${isEN ? 'https://wooahouse.com/en/search.html' : 'https://wooahouse.com/search.html'}" id="ws-full-link" target="_blank" rel="noopener">
-            ${isEN ? '🔎 Full search page' : '🔎 전체 검색 페이지'}
+            ${isJA ? '🔎 全体検索ページ' : isEN ? '🔎 Full search page' : '🔎 전체 검색 페이지'}
           </a>
         </div>
       </div>`;
@@ -176,25 +184,33 @@
   // ── 사이트 바 렌더링 ─────────────────────────────────────────────────────────
   const currentHost = window.location.hostname;
   const isEN = window.location.pathname.includes('/en/');
-  const label = isEN ? '🏠 WooaHouse Family Sites' : '🏠 우아하우스 패밀리 사이트 · 도구모음';
+  const isJA = window.location.pathname.includes('/ja/');
+  const label = isJA ? '🏠 WooaHouseファミリーサイト' : isEN ? '🏠 WooaHouse Family Sites' : '🏠 우아하우스 패밀리 사이트 · 도구모음';
 
   const existing = document.querySelector('.our-sites-bar');
   const bar = document.createElement('div');
   bar.className = 'our-sites-bar';
+  const toolSites = SITES.filter(s => !s.divider && !s.info);
+  const infoSites = SITES.filter(s => s.info);
+
   bar.innerHTML = `
     <div class="our-sites-inner">
       <span class="our-sites-label">${label}</span>
       <div class="our-sites-links">
-        ${SITES.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}</a>`).join('')}
+        ${toolSites.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}</a>`).join('')}
       </div>
-      <button class="ws-open-btn" title="${isEN ? 'Search tools (Ctrl+K)' : '도구 검색 (Ctrl+K)'}">🔍 ${isEN ? 'Search' : '검색'}</button>
+      <button class="ws-open-btn" title="${isJA ? 'ツール検索 (Ctrl+K)' : isEN ? 'Search tools (Ctrl+K)' : '도구 검색 (Ctrl+K)'}">🔍 ${isJA ? '検索' : isEN ? 'Search' : '검색'}</button>
+    </div>
+    <div class="our-sites-info-row">
+      <span class="our-sites-info-label">${isJA ? '📌 インフォサイト' : isEN ? '📌 Info Sites' : '📌 패밀리 정보 사이트'}</span>
+      ${infoSites.map(s => `<a href="${s.url}" class="sites-info-btn${s.host === currentHost ? ' active' : ''}" target="_blank" rel="noopener">${s.icon} ${s.name}</a>`).join('')}
     </div>`;
 
   bar.querySelector('.ws-open-btn').addEventListener('click', openSearch);
 
   // .ws-open-btn 스타일 (sites-bar 내 버튼)
   const btnStyle = document.createElement('style');
-  btnStyle.textContent = `.ws-open-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:inherit;border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}.ws-open-btn:hover{background:rgba(255,255,255,.28)}`;
+  btnStyle.textContent = `.ws-open-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:inherit;border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}.ws-open-btn:hover{background:rgba(255,255,255,.28)}.our-sites-info-row{display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08)}.our-sites-info-label{color:rgba(255,255,255,.5);font-size:12px;white-space:nowrap;margin-right:4px}.sites-info-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.85);border-radius:24px;padding:7px 20px;font-size:15px;font-weight:600;white-space:nowrap;text-decoration:none;transition:background .15s,border-color .15s,transform .1s;flex-shrink:0}.sites-info-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-1px)}.sites-info-btn.active{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6)}`;
   document.head.appendChild(btnStyle);
 
   if (existing) {
