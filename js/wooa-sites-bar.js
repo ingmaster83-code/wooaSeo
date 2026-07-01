@@ -18,7 +18,8 @@
     { icon: '🔎', name: 'WooaOCR',   host: 'wooaocr.wooahouse.com',   url: 'https://wooaocr.wooahouse.com/' },
     { icon: '📊', name: 'WooaSheet', host: 'wooasheet.wooahouse.com', url: 'https://wooasheet.wooahouse.com/' },
     { icon: '🔎', name: 'WooaSEO',   host: 'wooaseo.wooahouse.com',   url: 'https://wooaseo.wooahouse.com/' },
-    { icon: '📝', name: 'WooaGosa',  host: 'wooagosa.wooahouse.com',  url: 'https://wooagosa.wooahouse.com/' },
+    { icon: '📝', name: 'WooaGosa',  host: 'wooagosa.wooahouse.com',  url: 'https://wooagosa.wooahouse.com/', badge: 'update' },
+    { icon: '📋', name: 'WooaForm',  host: 'wooaform.wooahouse.com',  url: 'https://wooaform.wooahouse.com/', badge: 'new' },
     { divider: true },
     { icon: '💊', name: '이약뭐야',   host: 'wooayak.wooahouse.com',   url: 'https://wooayak.wooahouse.com/',  info: true },
     { icon: '🏥', name: '병원/약국',  host: 'hosppass.wooahouse.com',  url: 'https://hosppass.wooahouse.com/', info: true },
@@ -197,7 +198,7 @@
     <div class="our-sites-inner">
       <span class="our-sites-label">${label}</span>
       <div class="our-sites-links">
-        ${toolSites.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}</a>`).join('')}
+        ${toolSites.map(s => `<a href="${s.url}"${s.host === currentHost ? ' class="active"' : ''} ${s.host === currentHost ? '' : 'target="_blank" rel="noopener"'}>${s.icon} ${s.name}${s.badge === 'new' ? '<span class="ws-nav-badge ws-badge-new">NEW</span>' : s.badge === 'update' ? '<span class="ws-nav-badge ws-badge-update">UPDATE</span>' : ''}</a>`).join('')}
       </div>
       <button class="ws-open-btn" title="${isJA ? 'ツール検索 (Ctrl+K)' : isEN ? 'Search tools (Ctrl+K)' : '도구 검색 (Ctrl+K)'}">🔍 ${isJA ? '検索' : isEN ? 'Search' : '검색'}</button>
     </div>
@@ -210,7 +211,7 @@
 
   // .ws-open-btn 스타일 (sites-bar 내 버튼)
   const btnStyle = document.createElement('style');
-  btnStyle.textContent = `.ws-open-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:inherit;border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}.ws-open-btn:hover{background:rgba(255,255,255,.28)}.our-sites-info-row{display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08)}.our-sites-info-label{color:rgba(255,255,255,.5);font-size:12px;white-space:nowrap;margin-right:4px}.sites-info-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.85);border-radius:24px;padding:7px 20px;font-size:15px;font-weight:600;white-space:nowrap;text-decoration:none;transition:background .15s,border-color .15s,transform .1s;flex-shrink:0}.sites-info-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-1px)}.sites-info-btn.active{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6)}`;
+  btnStyle.textContent = `.ws-open-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:inherit;border-radius:20px;padding:3px 12px;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s}.ws-open-btn:hover{background:rgba(255,255,255,.28)}.our-sites-info-row{display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08)}.our-sites-info-label{color:rgba(255,255,255,.5);font-size:12px;white-space:nowrap;margin-right:4px}.sites-info-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.85);border-radius:24px;padding:7px 20px;font-size:15px;font-weight:600;white-space:nowrap;text-decoration:none;transition:background .15s,border-color .15s,transform .1s;flex-shrink:0}.sites-info-btn:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-1px)}.sites-info-btn.active{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.6)}.our-sites-links a{position:relative}.ws-nav-badge{position:absolute;top:-5px;right:-4px;font-size:7px;font-weight:800;padding:1px 4px;border-radius:6px;line-height:1.4;letter-spacing:.02em;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.3)}.ws-badge-new{background:#EF4444;color:#fff;}.ws-badge-update{background:#10B981;color:#fff;}`;
   document.head.appendChild(btnStyle);
 
   if (existing) {
