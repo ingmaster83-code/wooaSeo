@@ -26,6 +26,8 @@
     { icon: '📜', name: '자격증일정', host: 'gosapass.kr',              url: 'https://gosapass.kr/',            info: true },
     { icon: '💰', name: '보조금',     host: 'bojopass.kr',             url: 'https://bojopass.kr/',            info: true },
     { icon: '🏠', name: '청약정보',   host: 'aptpass.kr',              url: 'https://aptpass.kr/',             info: true },
+    { icon: '🏪', name: '전국5일장', host: 'wooasijang.wooahouse.com', url: 'https://wooasijang.wooahouse.com/', info: true },
+    { icon: '🅿️', name: '전국 공영주차장', host: 'wooaparking.wooahouse.com', url: 'https://wooaparking.wooahouse.com/', info: true },
   ];
 
   // ── 검색 모달 ────────────────────────────────────────────────────────────────
