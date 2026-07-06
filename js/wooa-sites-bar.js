@@ -23,9 +23,9 @@
     { divider: true },
     { icon: '💊', name: '이약뭐야',   host: 'wooayak.wooahouse.com',   url: 'https://wooayak.wooahouse.com/',  info: true },
     { icon: '🏥', name: '병원/약국',  host: 'hosppass.wooahouse.com',  url: 'https://hosppass.wooahouse.com/', info: true },
-    { icon: '📜', name: '자격증일정', host: 'gosapass.kr',              url: 'https://gosapass.kr/',            info: true },
-    { icon: '💰', name: '보조금',     host: 'bojopass.kr',             url: 'https://bojopass.kr/',            info: true },
-    { icon: '🏠', name: '청약정보',   host: 'aptpass.kr',              url: 'https://aptpass.kr/',             info: true },
+    { icon: '📜', name: '자격증일정', host: 'wooagosapass.wooahouse.com', url: 'https://wooagosapass.wooahouse.com/', info: true },
+    { icon: '💰', name: '보조금',     host: 'wooabojopass.wooahouse.com', url: 'https://wooabojopass.wooahouse.com/', info: true },
+    { icon: '🏠', name: '청약정보',   host: 'wooaaptpass.wooahouse.com',  url: 'https://wooaaptpass.wooahouse.com/',  info: true },
     { icon: '🏪', name: '전국5일장', host: 'wooasijang.wooahouse.com', url: 'https://wooasijang.wooahouse.com/', info: true },
     { icon: '🅿️', name: '전국 공영주차장', host: 'wooaparking.wooahouse.com', url: 'https://wooaparking.wooahouse.com/', info: true },
   ];
