@@ -28,6 +28,7 @@
     { icon: '🏠', name: '청약정보',   host: 'wooaaptpass.wooahouse.com',  url: 'https://wooaaptpass.wooahouse.com/',  info: true },
     { icon: '🏪', name: '전국5일장', host: 'wooasijang.wooahouse.com', url: 'https://wooasijang.wooahouse.com/', info: true },
     { icon: '🅿️', name: '전국 공영주차장', host: 'wooaparking.wooahouse.com', url: 'https://wooaparking.wooahouse.com/', info: true },
+    { icon: '📚', name: '전국 도서관', host: 'wooalib.wooahouse.com', url: 'https://wooalib.wooahouse.com/', info: true },
   ];
 
   // ── 검색 모달 ────────────────────────────────────────────────────────────────
