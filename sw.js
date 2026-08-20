@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wooaseo-v1';
+const CACHE_NAME = 'wooaseo-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -24,6 +24,7 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  if (new URL(event.request.url).origin !== self.location.origin) return; // 타사(광고·분석 등) 요청은 그대로 통과
   event.respondWith(
     fetch(event.request).catch(() => caches.match(event.request))
   );
