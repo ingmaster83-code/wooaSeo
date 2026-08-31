@@ -12,7 +12,7 @@
         '<div class="footer-grid">' +
           '<div class="footer-col">' +
             '<h4>🏠 WooaHouse</h4>' +
-            '<p style="color:#9CA3AF;font-size:.84rem;line-height:1.6">설치 불필요 &middot; 로그인 불필요<br>브라우저에서 바로 씻는 무료 도구 모음</p>' +
+            '<p style="color:#9CA3AF;font-size:.84rem;line-height:1.6">설치 불필요 &middot; 로그인 불필요<br>브라우저에서 바로 쓰는 무료 도구 모음</p>' +
             '<a href="https://wooahouse.com" target="_blank" style="margin-top:10px;display:inline-block;color:#10B981;">wooahouse.com →</a>' +
           '</div>' +
           '<div class="footer-col">' +
