@@ -1,0 +1,144 @@
+/* WooaDev Tool Kit 런타임 스타일 — build_site.py 가 생성 */
+.dev-label {font-size: 0.8rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px;}
+.dev-textarea {width: 100%;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.88rem;
+  padding: 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  outline: none;
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 120px;
+  box-sizing: border-box;
+  transition: border-color 0.15s;}
+.dev-textarea:focus {border-color: var(--primary);}
+.dev-input {width: 100%;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  color: var(--text);
+  box-sizing: border-box;
+  transition: border-color 0.15s;}
+.dev-input:focus {border-color: var(--primary);}
+.dev-btn {padding: 9px 22px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;}
+.dev-btn:hover {background: var(--primary-dark);}
+.dev-btn.secondary {background: white;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);}
+.dev-btn.secondary:hover {background: var(--primary-light);}
+.dev-btn-row {display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;}
+.dev-result {font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.88rem;
+  background: #F8F9FA;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  word-break: break-all;
+  min-height: 48px;
+  color: var(--text);
+  position: relative;
+  line-height: 1.55;}
+.dev-select {padding: 8px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--text);
+  background: white;
+  outline: none;
+  cursor: pointer;}
+.dev-select:focus {border-color: var(--primary);}
+.dev-checkbox-row {display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--text-light); cursor: pointer;}
+.dev-checkbox-row input[type=checkbox] {accent-color: var(--primary); width: 16px; height: 16px;}
+.dev-grid-2 {display: grid; grid-template-columns: 1fr 1fr; gap: 16px;}
+.alert {padding: 12px 16px; border-radius: var(--radius-sm); font-size: 0.88rem; margin-top: 16px;}
+.alert-error {background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA;}
+.alert-success {background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0;}
+.alert-info {background: var(--primary-light); color: var(--primary-dark); border: 1px solid #F0D9C0;}
+.dev-grid-2 {grid-template-columns: 1fr;}
+.related-tools h2 {font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--text,#1F2937);padding-bottom:8px;border-bottom:2px solid var(--primary,#0EA5E9);}
+.related-grid {display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.related-card {display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;background:var(--card-bg,#F9FAFB);border:1px solid var(--border,#E5E7EB);border-radius:10px;text-decoration:none;color:var(--text,#1F2937);transition:border-color .2s,transform .2s;font-size:.8rem;text-align:center;font-weight:500;}
+.related-card:hover {border-color:var(--primary,#0EA5E9);transform:translateY(-2px);}
+.related-icon {font-size:1.4rem;line-height:1;}
+.related-grid {grid-template-columns:repeat(2,1fr);}
+/* WooaDev Tool Kit — 공용 도구 UI (js/tk.js) */
+.tk-inputs { display: grid; gap: 14px; }
+.tk-inputs.tk-two { grid-template-columns: 1fr 1fr; }
+.tk-field { min-width: 0; }
+.tk-label-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.tk-label-row .dev-label { margin-bottom: 0; }
+.tk-count { font-size: .74rem; color: var(--text-light); white-space: nowrap; }
+.tk-ta { min-height: 150px; white-space: pre; overflow: auto; }
+.tk-file { font-size: .88rem; }
+.tk-fileinfo { margin-top: 6px; font-size: .8rem; color: var(--text-light); }
+.tk-opts { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); align-items: flex-end; }
+.tk-opt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.tk-opt:has(.dev-checkbox-row) { justify-content: flex-end; padding-bottom: 6px; }
+.tk-oplabel { font-size: .76rem; font-weight: 600; color: var(--text-light); }
+.tk-opt .dev-input { width: 150px; padding: 8px 10px; font-size: .86rem; }
+.tk-opt .tk-num { width: 90px; }
+.tk-opt .tk-optext { width: 130px; }
+.tk-opt .dev-select { max-width: 240px; }
+.tk-btns { margin-top: 16px; }
+.tk-out-btns { display: flex; gap: 6px; }
+.tk-mini { padding: 4px 12px !important; font-size: .76rem !important; }
+.tk-out { margin: 0; background: #1E293B; color: #E2E8F0; border-radius: 10px; padding: 14px 16px; font-family: Consolas, Monaco, 'D2Coding', monospace; font-size: .84rem; line-height: 1.6; max-height: 560px; overflow: auto; white-space: pre; tab-size: 2; }
+.tk-out code { font-family: inherit; }
+.tk-meta { margin-top: 8px; font-size: .75rem; color: var(--text-light); }
+.tk-empty { color: var(--text-light); font-size: .88rem; padding: 6px 2px; }
+.tk-table-wrap { overflow: auto; max-height: 560px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); }
+.tk-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+.tk-table th { position: sticky; top: 0; background: #F3F4F6; text-align: left; padding: 8px 12px; font-weight: 600; border-bottom: 1.5px solid var(--border); white-space: nowrap; }
+.tk-table td { padding: 7px 12px; border-bottom: 1px solid #F0F1F3; vertical-align: top; font-family: Consolas, Monaco, 'D2Coding', monospace; font-size: .8rem; word-break: break-all; max-width: 420px; }
+.tk-table tr:last-child td { border-bottom: 0; }
+.tk-table tr.r-add td { background: #F0FDF4; }
+.tk-table tr.r-del td { background: #FEF2F2; }
+.tk-table tr.r-chg td { background: #FFFBEB; }
+.tk-table tr.r-bad td { background: #FEF2F2; color: #B91C1C; }
+.tk-table tr.r-warn td { background: #FFFBEB; }
+.tk-table tr.r-ok td { background: #F0FDF4; }
+.tk-diff { white-space: pre-wrap; word-break: break-all; }
+.tk-diff .add { color: #86EFAC; background: rgba(34,197,94,.15); display: block; }
+.tk-diff .del { color: #FCA5A5; background: rgba(239,68,68,.15); display: block; }
+.tk-diff .ctx { color: #CBD5E1; display: block; }
+.tk-list { margin: 0; padding-left: 20px; font-family: Consolas, Monaco, monospace; font-size: .84rem; line-height: 1.8; }
+.tk-example { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.tk-example h2 { font-size: 1.05rem; margin: 0 0 12px; }
+.tk-example h3 { font-size: .82rem; color: var(--text-light); margin: 14px 0 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; }
+.tk-example p { font-size: .9rem; line-height: 1.7; color: var(--text); margin: 0 0 8px; }
+.tk-example pre { margin: 0; background: #F8F9FA; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 12px; font-family: Consolas, Monaco, monospace; font-size: .82rem; line-height: 1.55; overflow: auto; max-height: 300px; }
+.tk-about { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; font-size: .92rem; line-height: 1.75; }
+.tk-about h2 { font-size: 1.05rem; margin: 0 0 10px; }
+.tk-about p { margin: 0 0 8px; }
+.tk-about ul { margin: 6px 0 8px 18px; padding: 0; }
+/* env-editor 등 맞춤 UI */
+.tk-grid-edit input { width: 100%; box-sizing: border-box; font-family: Consolas, Monaco, monospace; font-size: .82rem; padding: 5px 8px; border: 1.5px solid var(--border); border-radius: 6px; }
+.tk-grid-edit td { max-width: none; }
+@media (max-width: 760px) {
+  .tk-inputs.tk-two { grid-template-columns: 1fr; }
+  .tk-opts { gap: 10px 14px; }
+  .tk-opt .dev-select { max-width: 100%; }
+}
+
+/* 언어 전환 (도구 페이지 공통) */
+.lang-switcher { display:flex; align-items:center; gap:4px; }
+.lang-switcher a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.8rem; font-weight:600; padding:3px 8px; border-radius:12px; transition:background 0.15s; }
+.lang-switcher a.active { color:white; background:rgba(255,255,255,0.25); }
+.lang-switcher a:hover { color:white; background:rgba(255,255,255,0.18); }
+.lang-switcher span { color:rgba(255,255,255,0.3); font-size:0.75rem; }
+.tk-about code, .tips-panel code { background:#F3F4F6; padding:1px 6px; border-radius:4px; font-family:Consolas,Monaco,monospace; font-size:.86em; }

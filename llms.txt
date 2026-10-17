@@ -15,6 +15,9 @@ WooaSEO은 설치나 로그인 없이 브라우저에서 바로 사용하는 무
 - [글자수 세기 — 글자수·단어수·문장수 실시간 카운터](https://wooaseo.wooahouse.com/word-counter.html): 텍스트를 입력하면 글자수(공백 포함/제외), 단어수, 문장수, 단락수, 읽기 소요시간을 실시간...
 - [메타태그 생성기 — SEO 필수 태그 자동 생성](https://wooaseo.wooahouse.com/meta-generator.html): title, description, keywords, robots, canonical 등 SE...
 - [키워드 밀도 분석기 — 텍스트 키워드 빈도 즉시 분석](https://wooaseo.wooahouse.com/keyword-density.html): 본문 텍스트를 붙여넣으면 키워드별 등장 횟수와 밀도(%)를 즉시 분석합니다. SEO 최적화를 ...
+- [robots.txt 테스터](https://wooaseo.wooahouse.com/robots-txt-tester.html): robots.txt 내용과 URL 목록을 넣으면 Googlebot, Bingbot, Yeti, GPTBot 등 선택한 크롤러가 각 URL 에 접근할 수 있는지 RFC 9309 규칙(가장 긴 일치 우선, Allow 동점 우선, * 와 $)으로 판정하고 결정한 규칙의 줄 번호를 보여 줍니다. Noindex 지시어, 규칙 위치 오류, CSS·JS 차단 같은 문제도 점검합니다.
+- [구조화 데이터 검증기](https://wooaseo.wooahouse.com/structured-data-validator.html): JSON-LD 나 JSON-LD 가 들어 있는 HTML 을 붙여 넣으면 JSON 구문, @context, 타입별 필수·권장 속성(Article, Product, Offer, FAQPage, BreadcrumbList, Organization, LocalBusiness, Event, Recipe, VideoObject, JobPosting 등), ISO 8601 날짜, 숫자 가격, 통화 코드, 절대 URL, @id 중복을 점검합니다. 중첩된 엔티티를 경로와 함께 표로 보여 줍니다.
+- [UTM 링크 생성기](https://wooaseo.wooahouse.com/utm-builder.html): 광고·뉴스레터·SNS 캠페인용 링크에 utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_id 를 붙여 줍니다. 여러 URL 에 한 번에 적용하고, 값을 소문자와 밑줄로 정리하며, 이미 있는 UTM 덮어쓰기, # 앞 쿼리 위치, GA4 채널 분류에 맞지 않는 medium 같은 흔한 실수를 알려 줍니다.
 
 ## Site
 - Homepage: https://wooaseo.wooahouse.com/
